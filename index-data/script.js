@@ -351,21 +351,9 @@ document.addEventListener('mousemove', (event) => {
 });
 
 
-// ป้องกันการเปิด Developer Tools ด้วยการกด F12
-document.addEventListener('keydown', function(event) {
-    // ตรวจสอบว่ากด F12 หรือไม่
-    if (event.key === 'F12') {
-        event.preventDefault(); // ป้องกันการเปิด DevTools
-        alert('I behind You NaJa ❤️'); // แสดงข้อความเตือน
-    }
-  });
-   
 
-
-});
 
   //สภาพอากาศ
-document.addEventListener('DOMContentLoaded', () => {
     const chiangMaiTimeElement = document.getElementById('chiangmai-time');
     const chiangMaiTempElement = document.getElementById('chiangmai-temp');
     const chiangMaiConditionElement = document.getElementById('chiangmai-condition');
