@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
         // --- กำหนดค่าเริ่มต้น ถ้า Player พร้อม ---
         if (playerReady) {
-            audioPlayer.volume = 0.4; // ตั้งค่าเสียงเริ่มต้นตามที่คุณใส่มา
+            audioPlayer.volume = 0.1; // ตั้งค่าเสียงเริ่มต้นตามที่คุณใส่มา
         }
     
         // --- Playlist ---
