@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hutao Portfolio Website</title>
+
+    <!--OG Meta Tags link-preview-->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nattapat2871.online/portfolio">
+    <meta property="og:title" content="Hutao Portfolio Website">
+    <meta property="og:description" content="NAH I'D WINN">
+    <meta property="og:image" content="link-preview.gif">
+    
+    <!--Twitter Meta Tags link-preview-->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://nattapat2871.online/portfolio">
+    <meta property="twitter:title" content="Hutao Portfolio Website55">
+    <meta property="twitter:description" content="NAH I'D WIN">
+    <meta property="twitter:image" content="link-preview.gif">
+
+
+
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="media/icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="click-overlay" id="clickToCloseOverlay">[ click ]</div>
+
+    <!--nav-->
+    <nav>
+        <div class="nav-container">
+            <div class="logo" data-aos="zoom-in" data-aos-duration="1500">
+                <span>Nattapat.Portfolio
+             </div>
+        <div class="links">
+            <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100"> <a href="#">Home</a></div> 
+            <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200"> <a href="#about">About</a></div>
+            <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300"> <a href="#skills">Skills</a></div>
+            <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400"> <a href="#services">Services</a></div> 
+            <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500"> <a href="#contact">Contact</a></div>      
+        </div>
+        <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
+        </div>
+        <div class="dropdown">
+            <a href="#">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#services">Service</a>
+            <a href="#contact">Contact</a>
+            <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
+        </div>
+    </nav>
+    
+
+       <!--Main section start-->
+       <section>
+        <div class="main-container" id="home"  data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1300">
+            <div class="image ellipse-switcher" id="media-ellipse" data-aos="zoom-out" data-aos-duration="900">
+                <img src="media/hutao.jpg" alt="Profile Image" class="media-item active" id="ellipse-image">
+                <video class="media-item" id="ellipse-video" autoplay muted loop playsinline>
+                    <source src="/media/hutao.mp4" type="video/mp4">
+                    เบราว์เซอร์ของคุณไม่รองรับแท็กวิดีโอ.
+                </video>
+            </div>
+
+            <div class="content-and-player-wrapper" >
+
+                <div class="content">
+                    <h1 data-aos="fade-left" data-aos-duration="1500" data-aos-delay="700">
+                        Hey I'm
+                        <span>Nam nam</span>
+                    </h1>
+                    <h2 data-aos="fade-left" data-aos-duration="1500" data-aos-delay="850">I'm a <span class="changing-text" ></span></span><span class="fixed-bar"> │</span></h2>
+                    <p data-aos="flip-down" data-aos-duration="1500" data-aos-delay="1100">Hi bro I'm live in Thailand. I'm software Engineer and Full Stack Developer Student.
+                        Yes, and now I am a student seeking experiences to follow my dreams. I must do it one day. (The best way to predict the future is to create it)
+                    </p>
+                    <div class="social-links">
+                        <a href="https://github.com/Nattapat2871" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        <a href="https://facebook.com/nattapat2871" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="550">
+                            <i class="fa-brands fa-facebook"></i>
+                        </a>
+                        <a href="https://line.me/ti/p/BgFWNo7K7M" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="700">
+                            <i class="fa-brands fa-line"></i>
+                        </a>
+                        <a href="https://discord.com/users/1007237437627572275" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="850">
+                             <i class="fa-brands fa-discord"></i>
+                        </a>
+                    </div>
+                    <div class="btn" data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1000">
+                        <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'start' });">Hire me</button>
+                        </div>
+                </div>
+                 <div class="music-player"   data-aos="fade-up" data-aos-duration="1500" data-aos-delay="2000">
+                    <div class="player-wrapper">
+                        <img src="fa-music.png" alt="Album Art" class="album-art" id="albumArt"> <div class="player-main">
+                            <div class="song-info">
+                                <p class="song-title thai-font" id="songTitle">Loading...</p>
+                            </div>
+                            <div class="progress-controls-container">
+                                <span class="current-time" id="currentTime">0:00</span>
+                                <input type="range" class="progress-bar" id="progressBar" value="0" min="0" max="100">
+                                <span class="total-duration" id="totalDuration">0:00</span>
+                                <div class="player-buttons">
+                                    <button id="prevBtn" aria-label="Previous Track"><i class="fas fa-step-backward"></i></button>
+                                    <button id="playPauseBtn" aria-label="Play/Pause"><i class="fas fa-play"></i></button>
+                                    <button id="nextBtn" aria-label="Next Track"><i class="fas fa-step-forward"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                
+            </div> 
+            </div> 
+         </section>
+         <div class="volume-control" >
+            <i id="speaker-icon" class="fa-solid fa-volume-low"></i>
+            <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
+        </div>
+         <audio id="audioPlayer"></audio>
+
+    
+      <!--About section start-->
+
+      <section class="about"id="about">
+        <div class="content">
+            <div class="title" data-aos="fade-up" data-aos-duration="1500"><span>About Me</span></div>
+            <div class="about-details">
+                <div class="left" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
+                    <img src="media/me.jpg" alt=""/>
+                </div>
+                <div class="right">
+                <div class="topic" data-aos="fade-up" data-aos-duration="1500">personal information</div>
+                <p data-aos="flip-down" data-aos-duration="1500" data-aos-delay="300">
+                    <h class="intro">my name is :</h> nattapat jitsom  (note) <br>
+                    I'm 20 year old <br>
+                    <h class="intro">birtday :</h>   Monday 3ʳᵈ January 2005 <br>
+                    <h class="intro">ethnicty :</h> thai , <h class="intro">nationality :</h> thai <br>
+                    Buddhism <br>
+                    <h class="intro">Military status :</h> Not yet conscripted <br>
+                    <h class="intro">Weight :</h> 75 , <h class="intro">Height :</h> 175
+
+                </p>
+
+               </div>
+            </div>
+        </div>
+      </section>
+
+
+
+        <!--Skills section start-->
+
+        <section class="skills" id="skills">
+            <div class="content">
+                <div class="title" data-aos="fade-up" data-aos-duration="1200"><span>My Skills</span></div>
+                <div class="skills-details">
+                    <div class="text">
+                        <div class="topic" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="200">
+                            Work History
+                        </div>
+                        <p data-aos="fade-right" data-aos-duration="1200" data-aos-delay="400"><h class="day">• 12/2024- now</h> food delivery Grab driver <br>
+                           <h class="day">• 05/2024 - now </h> web app game Developer freelance   <br>
+                           <h class="day">• 02/2024 - 06/2024</h>  Temporary daily employee, 7-11 Ton Phayom branch <br>
+                        </p>   
+                        </p>
+                        <div class="experience" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="600">
+                            <div class="num">2</div>
+                            <div class="exp">
+                                Year Of <br>
+                                experience <br>
+                                coding
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="boxes">
+                        <div class="Educational"  data-aos="fade-right" data-aos-duration="1200" data-aos-delay="100">Educational records <h>🎓 🖋️</h></div>
+                        <div class="box">
+                            <div class="topic-s" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="150">
+                                Chulalongkorn University, <br> 
+                                humanities English Program(EP)</div>
+                            <div class="per-s"  data-aos="fade-right" data-aos-duration="1200" data-aos-delay="300">2024 - now</div>
+                        </div>
+                        <div class="box">
+                            <div class="topic-s"  data-aos="fade-right" data-aos-duration="1200" data-aos-delay="450">WatBanKhun HighSchool</div><br><br>
+                            <div class="per-s"  data-aos="fade-right" data-aos-duration="1200" data-aos-delay="600">2020 - 2023</div>
+                            
+                        </div>
+                        <div class="box">
+                            <div class="topic-s" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="750">Buddhist Theology (Pali) </div>
+                            <div class="per-s"  data-aos="fade-right" data-aos-duration="1200" data-aos-delay="900">4/9</div>
+                        </div>
+                        <div class="box">
+                            <div class="topic-s"  data-aos="fade-right" data-aos-duration="1200" data-aos-delay="1050">Srikaengkhro primary School</div>
+                            <div class="per-s"  data-aos="fade-right" data-aos-duration="1200" data-aos-delay="1200">2011-2018</div>
+                        </div>
+                        <div class="box-skills"  data-aos="fade-right" data-aos-duration="1200" data-aos-delay="400">My Skills</div>
+                        <div class="box">
+                            <div class="topic"  data-aos="fade-right" data-aos-duration="1200" data-aos-delay="500">HTML CSS JS<br>(Front-End)</div>
+                            <div class="per"  data-aos="fade-right" data-aos-duration="1200" data-aos-delay="700">80%</div>
+                        </div>
+                        <div class="box">
+                            <div class="topic"  data-aos="fade-right" data-aos-duration="1200" data-aos-delay="600">Python</div>
+                            <div class="per"  data-aos="fade-right" data-aos-duration="1200" data-aos-delay="800">80%</div>
+                        </div>
+                        <div class="box">
+                            <div class="topic"  data-aos="fade-right" data-aos-duration="1200" data-aos-delay="700">English communication</div>
+                            <div class="per"  data-aos="fade-right" data-aos-duration="1200" data-aos-delay="900">70%</div>
+                        </div>
+                        <div class="box">
+                            <div class="topic"  data-aos="fade-right" data-aos-duration="1200" data-aos-delay="800"></div>
+                            <div class="per"  data-aos="fade-right" data-aos-duration="1200" data-aos-delay="1000"></div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </section>
+
+
+
+        <!--My Service Section Start-->
+
+        <section class="services"id="services">
+            <div class="content">
+                <div class="title"><span data-aos="fade-up" data-aos-duration="1200">My Services</span></div>
+                <div class="boxes">
+                    <div class="box" >
+                        <div class="icon">
+                            <i class="fa-solid fa-window-restore"></i>
+                        </div>
+                        <div class="topic" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">Web Devlopment</div>
+                        <p data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">is building and maintaining websites for the internet. It has two main parts that is Front-end and Back-end 
+                            <br>website you see here is this one.
+                            </p>
+                    </div>
+                    <div class="box">
+                        <div class="icon">
+                            <i class="fas fa-solid fa-star"></i>
+                        </div>
+                        <div class="topic"  data-aos="fade-up" data-aos-duration="1500" data-aos-delay="350">Rimuru gives you the primogem </div>
+                        <p data-aos="fade-up" data-aos-duration="1500" data-aos-delay="350">It is a Discord bot that will automatically log into the hoyolab website every day and will automatically send items into the game  ( Supports Genshin impact  Honkai starrail  Zenless zone zero )</p>
+                    </div>
+                    <div class="box">
+                        <div class="icon">
+                            <i class="fas fa-solid fa-radio"></i>
+                        </div>
+                        <div class="topic" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500">Jukebox Slime🎵</div>
+                        <p data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500">A Discord music bot that uses play commands and has buttons and thumbnails. Beautiful UI. Sounds great and easy to use</p>
+                    </div>
+                    <div class="box">
+                        <div class="icon">
+                            <i class="fa-solid fa-tv"></i>
+                        </div>
+                        <div class="topic" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="650"><p class="thai-font">อนิเมาะ</p></div>
+                        <p data-aos="fade-up" data-aos-duration="1500" data-aos-delay="650">A Discord bot that collects new and trending anime recommended by Gemini's AI, and includes free streaming sources, whether it's old anime or anime coming out in the next few months, Which will be notified in the anime message</p>
+                    </div>
+                    <div class="box">
+                        <div class="icon">
+                            <i class="fa-solid fa-cube"></i>
+                        </div>
+                        <div class="topic" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="700">Minecraft Server</div>
+                        <p data-aos="fade-up" data-aos-duration="1500" data-aos-delay="700">General server You can install mods and plugins to play with your friends using the host server and connect via ip<p class="mc-ip" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="750">play.nattapat2871.online </p></p>
+                    </div>
+                    <div class="box">
+                        <div class="icon">
+                            <i class="fa-solid fa-hourglass-start"></i>
+                        </div>
+                        <div class="topic" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="850">😊</div>
+                        <p data-aos="fade-up" data-aos-duration="1500" data-aos-delay="850">my new work coming soon</p>
+                    </div>
+                    <div class="box">
+                        <div class="icon">
+                            <i class="fa-solid fa-hourglass-start"></i>
+                        </div>
+                        <div class="topic" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="850">😊</div>
+                        <p data-aos="fade-up" data-aos-duration="1500" data-aos-delay="850">my new work coming soon</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+     <!--Contact Me section start-->
+     <section class="contact" id="contact">
+    <div class="content">
+        <div class="title" data-aos="fade-up" data-aos-duration="1500">
+            <span>Contact Me</span>
+        </div>
+        <div class="text">
+            <div class="address" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="200">📞 Tel : +66 65 028 2835<br>
+                ✉️ Email : nattapat2871@gmail.com <br>
+                129/9 silverPark Mansion  soi WatSuandok2  Sutep MueangChaingmai Chiangmai 50200</div>
+            <br><br><br>
+            <div class="title" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
+                <span>Connect app</span>
+            </div>
+
+            <div class="contact-links">
+                <div class="contact-links-tooltip"><a href="tel:0650282835" data-aos="fade-up" data-aos-duration="500" data-aos-delay="100"> <i class="fa-solid fa-phone"></i></a>
+                    <span class="contact-links-tooltip-text">Phone 0650282835
+                </span> </div>
+                    <div class="contact-links-tooltip"><a href="https://github.com/Nattapat2871" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200"> <i class="fa-brands fa-github"></i></a>
+                        <span class="contact-links-tooltip-text">github
+                    </span> </div>
+                    <div class="contact-links-tooltip"><a href="mailto:nattapat2871@gmail.com" data-aos="fade-up" data-aos-duration="500" data-aos-delay="300"> <i class="fa-solid fa-envelope"></i></a>
+                         <span class="contact-links-tooltip-text">gmail
+                    </span> </div>
+                    <div class="contact-links-tooltip"><a href="https://line.me/ti/p/BgFWNo7K7M" data-aos="fade-up" data-aos-duration="500" data-aos-delay="400"> <i class="fa-brands fa-line"></i></a>
+                        <span class="contact-links-tooltip-text">Line
+                    </span> </div>
+                    <div class="contact-links-tooltip"><a href="https://facebook.com/nattapat2871" data-aos="fade-up" data-aos-duration="500" data-aos-delay="500"> <i class="fa-brands fa-facebook"></i></a>
+                        <span class="contact-links-tooltip-text">facebook
+                    </span> </div>
+                    <div class="contact-links-tooltip"><a href="https://instagram.com/nattapat2871" data-aos="fade-up" data-aos-duration="500" data-aos-delay="600"> <i class="fa-brands fa-instagram"></i></a>
+                        <span class="contact-links-tooltip-text">instagram
+                    </span> </div>
+                    <div class="contact-links-tooltip"><a href="https://discord.com/users/1007237437627572275" data-aos="fade-up" data-aos-duration="500" data-aos-delay="700"> <i class="fa-brands fa-discord"></i></a>
+                        <span class="contact-links-tooltip-text">discord
+                    </span> </div>
+                    <div class="contact-links-tooltip"><a href="https://steamcommunity.com/id/nattapat2871/" data-aos="fade-up" data-aos-duration="500" data-aos-delay="800"> <i class="fa-brands fa-steam"></i></a>
+                        <span class="contact-links-tooltip-text">steam id: 1416710361
+                    </span> </div>
+                    <div class="contact-links-tooltip"><a href="https://www.twitch.tv/nattapat2871_" data-aos="fade-up" data-aos-duration="500" data-aos-delay="900"> <i class="fa-brands fa-twitch"></i></a>
+                        <span class="contact-links-tooltip-text">twitch
+                    </span> </div>
+                    <div class="contact-links-tooltip"><a href="https://x.com/2871Nattapat" data-aos="fade-up" data-aos-duration="500" data-aos-delay="1000"> <i class="fa-brands fa-x-twitter"></i></a>
+                        <span class="contact-links-tooltip-text">x
+                    </span> </div>
+                    <div class="contact-links-tooltip"><a href="https://www.tiktok.com/@nattapat2871" data-aos="fade-up" data-aos-duration="500" data-aos-delay="1100"> <i class="fa-brands fa-tiktok"></i></a>
+                        <span class="contact-links-tooltip-text">tiktok
+                    </span> </div>
+                    <div class="contact-links-tooltip"><a href="https://namemc.com/profile/_Nattapat2871_" data-aos="fade-up" data-aos-duration="500" data-aos-delay="1200"> <i class="fa-solid fa-cube"></i></a>
+                        <span class="contact-links-tooltip-text">NameMC
+                    </span> </div>
+                    <div class="contact-links-tooltip"><a href="https://www.roblox.com/th/users/3520621100/profile?friendshipSourceType=PlayerSearch" data-aos="fade-up" data-aos-duration="500" data-aos-delay="1300"> <i class="roblox"></i></a>
+                        <span class="contact-links-tooltip-text">roblox
+                    </span> </div>
+                    <div class="contact-links-tooltip"><a href="https://osu.ppy.sh/users/31373831" data-aos="fade-up" data-aos-duration="500" data-aos-delay="1400"> <i class="osu"></i></a>
+                        <span class="contact-links-tooltip-text">osu
+                    </span> </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+       <!--backtotop-->
+   <a href="#home" id="backToTopBtn" title="backToTop" >
+      <img src="media\backtotop.png" alt="backToTop" >
+   </a>
+
+
+
+     <!--Footer Section start-->
+    <footer>
+        <div class="text">
+            <span>Create By
+                <a href="#">Nattapat2871</a>
+                &#169 2025 All Right Reserved
+              </span>
+        </div>
+    </footer>
+
+
+    <script src="app.js" ></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
+
+</body>
+</html>
