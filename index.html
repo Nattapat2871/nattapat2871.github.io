@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nattapat's Pages</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <div class="banner-wrapper">
+            <img src="assets/githubbanner.png" alt="Profile Banner" class="banner-img">
+        </div>
+
+        <header class="header-info">
+            <div class="header-left">
+                <h1 class="hero-title" data-i18n="header_title">PROJECT<br><span class="text-accent">PAGES</span></h1>
+                <div class="about-section">
+                    <h3 data-i18n="about_title">ABOUT THIS PAGE</h3>
+                    <p data-i18n="about_desc">
+                        หน้าเว็บนี้ ถูกสร้างขึ้นเพื่อใช้เป็น 
+                        "สารบัญ" (Directory) สำหรับรวมลิงก์ไปยังโปรเจกต์ เกม บอท 
+                        และผลงานโค้ดต่างๆ ของผมไว้ในที่เดียวเพื่อให้ง่ายต่อการเข้าถึง
+                    </p>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <div class="social-icons">
+                    <a href="https://github.com/nattapat2871" target="_blank" title="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://discord.com/users/1007237437627572275" target="_blank" title="Discord">
+                        <i class="fa-brands fa-discord"></i>
+                    </a>
+                </div>
+                
+
+                <div class="status-indicator">
+                    <span class="dot"></span> <span data-i18n="system_online">System Online</span>
+                </div>
+                <a href="#" id="status-link" class="status-link" target="_blank" data-i18n="view_details">View detailed service status here</a>
+                
+                <button class="lang-btn" id="lang-toggle" onclick="toggleLanguage()">View this page in English</button>
+            </div>
+        </header>
+
+        <main class="content-area">
+            
+            <a href="https://project-focalor.nattapat2871.me" class="card">
+                <div class="card-image">
+                    <img src="https://cdn.discordapp.com/avatars/1412875611650916563/4209dd5e425b212f5dc88045e804ed3f.webp?size=128" alt="Project Focalor">
+                </div>
+                <div class="card-content">
+                    <h3>Project Focalor</h3>
+                    <p class="highlight" data-i18n="cat_focalor">Auto daily login HoYoVerse Bot</p>
+                    <p class="description" data-i18n="desc_focalor">บอท Discord สำหรับล็อคอินประจำวันของเกมในค่าย HoYoVerse และรองรับแลกโค้ดอัตโนมัติ (อยู่ในระหว่างการพัฒนา...)</p>
+                </div>
+            </a>
+
+            <a href="https://donate.nattapat2871.me" class="card">
+                <div class="card-image">
+                    <img src="https://donate.nattapat2871.me/static/favicon.ico" alt="Donation Web">
+                </div>
+                <div class="card-content">
+                    <h3>Donation Web</h3>
+                    <p class="highlight" data-i18n="cat_web">Web Development</p>
+                    <p class="description" data-i18n="desc_donate">เว็บไซต์สำหรับการสนับสนุนและโดเนทเพื่อเป็นกำลังใจในการพัฒนา</p>
+                </div>
+            </a>
+
+            <a href="https://api.ame.nattapat2871.me" target="_blank" class="card">
+                <div class="card-image">
+                    <img src="https://api.ame.nattapat2871.me/favicon.ico" alt="Ame API">
+                </div>
+                <div class="card-content">
+                    <h3>Ame API</h3>
+                    <p class="highlight" data-i18n="cat_backend">Backend Service</p>
+                    <p class="description" data-i18n="desc_api">ระบบ API สำหรับดึงข้อมูลโปรไฟล์ผูใช้ใน Discord เพียงแค่ใช้ User ID </p>
+                </div>
+            </a>
+
+            <a href="https://ame.nattapat2871.me" class="card">
+                <div class="card-image">
+                    <img src="https://ame.nattapat2871.me/asset/amebot.png" alt="Ame Bot">
+                </div>
+                <div class="card-content">
+                    <h3>Ame Bot Discord</h3>
+                    <p class="highlight" data-i18n="cat_bot">Discord Bot</p>
+                    <p class="description" data-i18n="desc_ame">บอท Discord ที่มีฟังชั่นการใช้งานหลากหลาย ประจำวัน และแชทบอท AI</p>
+                </div>
+            </a>
+
+            <a href="#" class="card">
+                <div class="card-image">
+                    <img src="https://cdn.discordapp.com/avatars/1376505105687253072/9990ba239f7d0ea929f2cb7535463e19.webp?size=128" alt="SlimeJuke">
+                </div>
+                <div class="card-content">
+                    <h3>SlimeJuke Discord Bot</h3>
+                    <p class="highlight" data-i18n="cat_slimejuke">Discord Music Bot</p>
+                    <p class="description" data-i18n="desc_slimejuke">บอทเพลง Discord ที่ให้บริการ โดยใช้ Lavalink เป็นตัวจัดการ (อยู่ในระหว่างการพัฒนา...)</p>
+                </div>
+            </a>
+
+            <a href="https://portfolio.nattapat2871.me" class="card">
+                <div class="card-image">
+                    <img src="https://portfolio.nattapat2871.me/media/icon.png" alt="Portfolio">
+                </div>
+                <div class="card-content">
+                    <h3>Portfolio</h3>
+                    <p class="highlight" data-i18n="cat_profile">Profile Website</p>
+                    <p class="description" data-i18n="desc_port">หน้าเว็บแนะนำตัว ประวัติผลงาน และข้อมูลการติดต่ออย่างเป็นทางการ</p>
+                </div>
+            </a>
+
+            <a href="https://nattapat2871.me/mc-webpage" class="card">
+                <div class="card-image">
+                    <img src="https://nattapat2871.me/mc-webpage/media/icon.png" alt="Minecraft Server">
+                </div>
+                <div class="card-content">
+                    <h3>My Minecraft Server</h3>
+                    <p class="highlight" data-i18n="cat_mc">Minecraft Server</p>
+                    <p class="description" data-i18n="desc_mc">เซิร์ฟเวอร์ Minecraft ที่ผมเปิดให้บริการ พร้อมระบบ Custom Plugin</p>
+                </div>
+            </a>
+
+            <a href="https://github.com/Nattapat2871/Self-DiscordtoFortniteStatus" class="card">
+                <div class="card-image">
+                    <img src="https://cdn2.steamgriddb.com/icon_thumb/101b3e88e84b3d92b07d65e76cca60ed.png" alt="Minecraft Server">
+                </div>
+                <div class="card-content">
+                    <h3>Discord Status to Fortnite Status</h3>
+                    <p class="highlight" data-i18n="cat_self-fortnite">Self Game service</p>
+                    <p class="description" data-i18n="desc_self-fortnite">ส่งสถานะกิจกรรมที่ Discord และส่งไปที่กิจกรรมในเกม Fortnite โดยเชื่อมต่อ XMPP</p>
+                </div>
+            </a>
+
+            <a href="https://status.nattapat2871.me/" class="card">
+                <div class="card-icon">
+                    <i class="fa-solid fa-signal"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Status Web Page</h3>
+                    <p class="highlight" data-i18n="cat_monitor">System Monitor</p>
+                    <p class="description" data-i18n="desc_status">หน้าเว็บสำหรับตรวจสอบสถานะการทำงาน (Uptime) ของบอทและเว็บไซต์</p>
+                </div>
+            </a>
+
+            <a href="https://github.com/nattapat2871" target="_blank" class="card">
+                <div class="card-icon">
+                    <i class="fa-brands fa-github"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Github Repo</h3>
+                    <p class="highlight" data-i18n="cat_source">Source Code</p>
+                    <p class="description" data-i18n="desc_github">คลังเก็บโค้ด Open Source และโปรเจกต์ต่างๆ ที่เผยแพร่สาธารณะ</p>
+                </div>
+            </a>
+
+        </main>
+
+        <footer class="site-footer">
+            <p>&copy; 2025 Nattapat2871. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
