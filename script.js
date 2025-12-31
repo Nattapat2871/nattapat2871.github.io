@@ -2,7 +2,7 @@
 /// Dictionary for translations
 const translations = {
     th: {
-        header_title: 'PROJECT<br><span class="text-accent">PAGES</span>',
+        header_title: 'NATTAPAT2871<br><span class="text-accent">PAGES</span>',
         about_title: 'ABOUT THIS PAGE',
         about_desc: 'หน้าเว็บนี้ ถูกสร้างขึ้นเพื่อใช้เป็น "สารบัญ" (Directory) สำหรับรวมลิงก์ไปยังโปรเจกต์ เกม บอท และผลงานโค้ดต่างๆ ของผมไว้ในที่เดียวเพื่อให้ง่ายต่อการเข้าถึง',
         links_title: 'LINKS',
@@ -46,7 +46,7 @@ const translations = {
         btn_toggle: 'View this page in English'
     },
     en: {
-        header_title: 'PROJECT<br><span class="text-accent">PAGES</span>',
+        header_title: 'NATTAPAT2871<br><span class="text-accent">PAGES</span>',
         about_title: 'ABOUT THIS PAGE',
         about_desc: 'This webpage is created as a "Directory" to collect links to my projects, games, bots, and various coding works in one place for easy access.',
         links_title: 'LINKS',
@@ -124,7 +124,7 @@ function updateTranslations() {
 
 
 // [ตั้งค่า] ลิงก์หลักของหน้า Status Page ของคุณ
-const STATUS_PAGE_URL = 'https://status.nattapat2871.me/';
+const STATUS_PAGE_URL = 'https://status.nattapat2871.me';
 
 
 // ฟังก์ชันดึงสถานะจาก API
