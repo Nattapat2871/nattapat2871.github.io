@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joining Discord Server...</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* กำหนดตัวแปรสีตาม Theme ที่ขอมา */
+        :root {
+            --bg-main: #120a1f;
+            --bg-card: #1d1133;
+            --bg-card-hover: #261742;
+            --text-main: #ffffff;
+            --text-secondary: #c4b0e2;
+            --accent-color: #a56eff;
+            --border-color: #341f56;
+            --grid-line: rgba(165, 110, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: 'Kanit', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* พื้นหลังลายตาราง (Grid Background) */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 100%); 
+        }
+
+        /* การ์ดตรงกลาง */
+        .redirect-card {
+            background-color: var(--bg-card);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            z-index: 10;
+        }
+
+        .redirect-card:hover {
+            transform: translateY(-5px);
+            background-color: var(--bg-card-hover);
+            border-color: var(--accent-color);
+        }
+
+        /* โลโก้ Discord */
+        .discord-icon {
+            width: 80px;
+            height: 80px;
+            fill: var(--accent-color);
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 10px rgba(165, 110, 255, 0.4));
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        /* แถบโหลด (Progress Bar) */
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background-color: var(--bg-main);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--accent-color);
+            width: 0%;
+            border-radius: 10px;
+            box-shadow: 0 0 10px var(--accent-color);
+            animation: loadProgress 3s linear forwards; 
+        }
+
+        /* Footer Style */
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            opacity: 0.6;
+            letter-spacing: 1px;
+            pointer-events: none; /* ไม่ให้ขวางการคลิก */
+        }
+
+        /* Animation Keyframes */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes loadProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="redirect-card">
+        <svg class="discord-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.772-.6083 1.1588a18.2915 18.2915 0 00-5.4882 0 12.642 12.642 0 00-.6173-1.1588.0771.0771 0 00-.0793-.0376 19.7363 19.7363 0 00-4.8859 1.5161.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.419-2.1568 2.419zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.419-2.1568 2.419z"/>
+        </svg>
+
+        <h1>กำลังเชื่อมต่อไปยังเซิร์ฟเวอร์</h1>
+        <p>กรุณารอสักครู่... <span id="countdown">3</span> วินาที</p>
+        
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Created by nattapat2871
+    </div>
+
+    <script>
+        // ตั้งค่าลิงก์ Discord ของคุณตรงนี้
+        const discordLink = "https://discord.gg/nfTp6aMmDD";    
+        
+        let timeLeft = 3;
+        const countdownEl = document.getElementById('countdown');
+
+        const timer = setInterval(() => {
+            timeLeft--;
+            countdownEl.textContent = timeLeft;
+            
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                window.location.href = discordLink;
+            }
+        }, 1000);
+
+        setTimeout(() => {
+            window.location.href = discordLink;
+        }, 3000);
+    </script>
+</body>
+</html>
