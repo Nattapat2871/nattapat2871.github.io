@@ -124,7 +124,7 @@ function updateTranslations() {
 
 
 // [ตั้งค่า] ลิงก์หลักของหน้า Status Page ของคุณ
-const STATUS_PAGE_URL = 'http://127.0.0.1:8000';
+const STATUS_PAGE_URL = 'https://status.nattapat2871.me/';
 
 
 // ฟังก์ชันดึงสถานะจาก API
