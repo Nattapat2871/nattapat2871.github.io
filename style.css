@@ -239,3 +239,92 @@ body {
     font-size: 0.9rem;
     opacity: 0.7;
 }
+
+/* --- Floating Stats Widget --- */
+.stats-floating-widget {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(5px);
+    color: #ffffff;
+    padding: 8px 15px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    font-family: 'Kanit', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    user-select: none;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.divider { color: rgba(255, 255, 255, 0.3); font-size: 12px; }
+
+/* Stat Item General */
+.stat-item {
+    display: flex;
+    align-items: center;
+    cursor: default;
+    transition: all 0.3s ease;
+}
+
+.stat-item i { margin-right: 6px; }
+
+/* --- Like Button Specific --- */
+.like-item {
+    cursor: pointer; /* เมาส์เป็นรูปนิ้วกดได้ */
+}
+
+.like-item:hover {
+    transform: scale(1.1); /* ขยายเล็กน้อยเมื่อชี้ */
+}
+
+/* สถานะ Active (เมื่อกด Like แล้ว) */
+.like-item.active {
+    color: #ff4757; /* สีแดง */
+}
+
+.like-item.active i {
+    animation: heartBeat 0.3s forwards; /* อนิเมชันหัวใจเต้น */
+}
+
+/* --- View Item Specific (Animation เดิม) --- */
+.view-item .hover-text {
+    max-width: 0;
+    opacity: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: all 0.4s ease-in-out;
+}
+
+.view-item:hover .hover-text {
+    max-width: 60px;
+    opacity: 1;
+    margin-right: 5px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heartBeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .stats-floating-widget { bottom: 10px; left: 10px; padding: 6px 12px; font-size: 12px; }
+}

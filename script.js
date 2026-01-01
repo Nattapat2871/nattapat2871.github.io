@@ -1,4 +1,3 @@
-
 /// Dictionary for translations
 const translations = {
     th: {
@@ -159,17 +158,137 @@ async function fetchSystemStatus() {
     updateTranslations();
 }
 
-// เรียกใช้งานเมื่อโหลดหน้าเว็บ
-document.addEventListener('DOMContentLoaded', () => {
-    // ตั้งค่า Link ให้ปุ่ม "ดูรายละเอียด"
-    const statusLink = document.getElementById('status-link');
-    if (statusLink) {
-        statusLink.href = STATUS_PAGE_URL;
+
+// ... (ส่วน Dictionary Translations เหมือนเดิม) ...
+
+// ==========================================
+// Stats System (View + Like) - Optimized
+// ==========================================
+
+const CURRENT_DOMAIN = window.location.hostname;
+const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const API_BASE = isLocal ? 'http://localhost:8800' : 'https://api.ame.nattapat2871.me';
+
+// URL APIs
+// [ใหม่] API รวมยอด (เรียกทีเดียวได้ครบ)
+const PAGE_STATS_API_URL = `${API_BASE}/api/page-stats?site=${CURRENT_DOMAIN}`;
+// API สำหรับการกระทำ (Update)
+const VIEW_UPDATE_API_URL = `${API_BASE}/api/view?site=${CURRENT_DOMAIN}`;
+const LIKE_UPDATE_API_URL = `${API_BASE}/api/like?site=${CURRENT_DOMAIN}`;
+
+// Helper Cookie Functions
+function setCookie(name, value, hours) {
+    const date = new Date();
+    const timeToAdd = hours ? (hours * 60 * 60 * 1000) : (10 * 365 * 24 * 60 * 60 * 1000); 
+    date.setTime(date.getTime() + timeToAdd);
+    document.cookie = name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
+}
+
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for(let i=0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
+function deleteCookie(name) {
+    document.cookie = name + '=; Max-Age=-99999999; path=/';
+}
+
+// --- Main Function: Load Everything Together ---
+async function initStatsSystem() {
+    const viewCounterElement = document.getElementById('view-counter');
+    const likeCounterElement = document.getElementById('like-count');
+    const likeBtn = document.getElementById('like-btn');
+
+    if (!viewCounterElement || !likeCounterElement) return;
+
+    // 1. ตรวจสอบสถานะปุ่ม Like (จาก Cookie) เพื่อแสดงสีแดงทันที (ไม่ต้องรอ API)
+    const likeCookieName = `liked_${CURRENT_DOMAIN}`;
+    let isLiked = getCookie(likeCookieName) === 'true';
+    if (isLiked) {
+        likeBtn.classList.add('active');
     }
 
-    // ดึงสถานะครั้งแรก
-    fetchSystemStatus();
+    // 2. เรียก API เดียว เพื่อดึงทั้ง View และ Like พร้อมกัน (เร็ว!)
+    try {
+        const response = await fetch(PAGE_STATS_API_URL);
+        if (!response.ok) throw new Error('Stats API Error');
+        const data = await response.json();
+
+        // แสดงผลทันที
+        viewCounterElement.innerText = data.view_count.toLocaleString();
+        likeCounterElement.innerText = data.like_count.toLocaleString();
+
+        // 3. (เบื้องหลัง) เช็คว่าต้องนับ View เพิ่มไหม
+        checkAndIncrementView(data.view_count);
+
+    } catch (error) {
+        console.error('Error loading stats:', error);
+        viewCounterElement.innerText = '-';
+        likeCounterElement.innerText = '-';
+    }
+
+    // 4. ตั้งค่าปุ่มกด Like
+    setupLikeButton(likeBtn, likeCounterElement, likeCookieName, isLiked);
+}
+
+// ฟังก์ชันนับ View เพิ่ม (ทำงานเงียบๆ เบื้องหลัง)
+async function checkAndIncrementView(currentCount) {
+    const viewCookieName = `viewed_${CURRENT_DOMAIN}`;
     
-    // ตั้งเวลาดึงข้อมูลใหม่ทุกๆ 60 วินาที
+    // ถ้าไม่มี Cookie แปลว่าเป็นคนใหม่ -> สั่งบวกยอด
+    if (!getCookie(viewCookieName)) {
+        setCookie(viewCookieName, 'true', 12); // เก็บประวัติ 12 ชม.
+        
+        try {
+            const res = await fetch(VIEW_UPDATE_API_URL, { method: 'POST' });
+            const data = await res.json();
+            // อัปเดตตัวเลขหน้าเว็บอีกครั้งให้เป็นยอดล่าสุด
+            document.getElementById('view-counter').innerText = data.count.toLocaleString();
+        } catch (e) { console.error('View increment error:', e); }
+    }
+}
+
+// ฟังก์ชันจัดการปุ่ม Like
+function setupLikeButton(btn, counterElement, cookieName, initialState) {
+    let isLiked = initialState;
+
+    btn.addEventListener('click', async () => {
+        // Toggle สถานะ
+        isLiked = !isLiked;
+        
+        // อัปเดต UI ทันที (Optimistic UI) - ไม่ต้องรอ Server ตอบกลับ
+        let currentNum = parseInt(counterElement.innerText.replace(/,/g, '')) || 0;
+        
+        if (isLiked) {
+            // กด Like
+            btn.classList.add('active');
+            counterElement.innerText = (currentNum + 1).toLocaleString();
+            setCookie(cookieName, 'true'); 
+            fetch(`${LIKE_UPDATE_API_URL}&action=like`, { method: 'POST' }); // ส่งข้อมูลไปบอก Server
+        } else {
+            // เอา Like ออก
+            btn.classList.remove('active');
+            counterElement.innerText = Math.max(0, currentNum - 1).toLocaleString();
+            deleteCookie(cookieName);
+            fetch(`${LIKE_UPDATE_API_URL}&action=unlike`, { method: 'POST' }); // ส่งข้อมูลไปบอก Server
+        }
+    });
+}
+
+// เรียกใช้งาน
+document.addEventListener('DOMContentLoaded', () => {
+    // ... (ส่วนอื่นๆ ของเดิม) ...
+    const statusLink = document.getElementById('status-link');
+    if (statusLink) statusLink.href = STATUS_PAGE_URL;
+    fetchSystemStatus();
     setInterval(fetchSystemStatus, 60000);
+    
+    // เรียกใช้ระบบ Stats แบบใหม่
+    initStatsSystem();
 });
