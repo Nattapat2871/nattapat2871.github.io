@@ -73,6 +73,13 @@ body {
     display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: var(--text-secondary); font-size: 0.9rem;
 }
 
+.social-icons img {
+    width: 24px;
+    height: 24px;
+    display: block; /* ลบช่องว่างส่วนเกิน */
+    object-fit: contain;
+}
+
 .dot {
     width: 10px; 
     height: 10px; 
@@ -327,4 +334,69 @@ body {
 /* Mobile */
 @media (max-width: 600px) {
     .stats-floating-widget { bottom: 10px; left: 10px; padding: 6px 12px; font-size: 12px; }
+}
+
+/* --- Custom Animated Tooltip --- */
+.social-icons a {
+    position: relative; /* จำเป็นสำหรับการจัดตำแหน่ง Tooltip */
+}
+
+/* ตัวกล่องข้อความ Tooltip */
+.social-icons a::before {
+    content: attr(data-tooltip); /* ดึงข้อความจาก HTML มาแสดง */
+    position: absolute;
+    bottom: 125%; /* ให้อยู่เหนือปุ่ม */
+    left: 50%;
+    transform: translateX(-50%) translateY(10px); /* ตั้งต้นให้ต่ำลงมานิดหน่อย (รออนิเมชั่น) */
+    
+    background-color: rgba(18, 10, 31, 0.95); /* สีพื้นหลังเดียวกับธีม แต่โปร่งแสงนิดๆ */
+    color: var(--text-main);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
+    
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; /* ไม่ให้เมาส์ไปโดน Tooltip */
+    
+    border: 1px solid var(--border-color);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* อนิเมชั่นแบบเด้งๆ */
+    z-index: 100;
+}
+
+/* ตัวลูกศรสามเหลี่ยมข้างล่างกล่อง */
+.social-icons a::after {
+    content: '';
+    position: absolute;
+    bottom: 115%; /* ต้องสอดคล้องกับกล่องข้างบน */
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    
+    border-width: 6px;
+    border-style: solid;
+    border-color: var(--border-color) transparent transparent transparent; /* สามเหลี่ยมสีเดียวกับขอบ */
+    
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 100;
+}
+
+/* เมื่อเอาเมาส์ชี้ (Hover) */
+.social-icons a:hover::before,
+.social-icons a:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0); /* ลอยขึ้นไปที่ตำแหน่งจริง */
+}
+
+/* เพิ่มสี Accent ตอนชี้ให้ขอบ Tooltip สวยขึ้น */
+.social-icons a:hover::before {
+    border-color: var(--accent-color);
+}
+.social-icons a:hover::after {
+    border-top-color: var(--accent-color);
 }
