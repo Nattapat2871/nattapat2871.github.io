@@ -27,6 +27,7 @@ const translations = {
         cat_mc: 'Minecraft Server',
         cat_self_fortnite: 'Self Game service', 
         'cat_self-fortnite': 'Self Game service', 
+        cat_auto_claim: 'Self Game Service',
 
         // Descriptions
         desc_donate: 'เว็บไซต์สำหรับการสนับสนุนและโดเนทเพื่อเป็นกำลังใจในการพัฒนา',
@@ -34,12 +35,14 @@ const translations = {
         desc_status: 'หน้าเว็บสำหรับตรวจสอบสถานะการทำงาน (Uptime) ของบอทและเว็บไซต์',
         desc_github: 'คลังเก็บโค้ด Open Source และโปรเจกต์ต่างๆ ที่เผยแพร่สาธารณะ',
         
-        desc_focalor: 'บอท Discord สำหรับล็อคอินประจำวันของเกมในค่าย HoYoVerse และรองรับแลกโค้ดอัตโนมัติ (อยู่ในระหว่างการพัฒนา...)',
+        desc_focalor: 'บอท Discord สำหรับล็อคอินประจำวันของเกมในค่าย HoYoVerse และรองรับแลกโค้ดอัตโนมัติ',
         desc_api: 'ระบบ API สำหรับดึงข้อมูลโปรไฟล์ผูใช้ใน Discord เพียงแค่ใช้ User ID',
         desc_ame: 'บอท Discord ที่มีฟังชั่นการใช้งานหลากหลาย ประจำวัน และแชทบอท AI',
-        desc_slimejuke: 'บอทเพลง Discord ที่ให้บริการ โดยใช้ Lavalink เป็นตัวจัดการ (อยู่ในระหว่างการพัฒนา...)',
+        desc_slimejuke: 'ยกเลิกการพัฒนาเพราะเปลี่ยนไปใช้ Rurina Melody',
+        desc_melody: 'บอทเพลงคุณภาพสูงสำหรับ Discord รองรับการเล่นเพลงจากหลากหลายแพลตฟอร์ม พร้อมระบบจัดการห้องเพลงที่ทันสมัย และคุณภาพเสียงระดับ Lossless และคุณภาพเสียง 384 Kbps เพื่อให้คุณได้รับประสบการณ์ที่ดีที่สุด 🎶',
         desc_mc: 'เซิร์ฟเวอร์ Minecraft ที่ผมเปิดให้บริการ พร้อมระบบ Custom Plugin',
         'desc_self-fortnite': 'ส่งสถานะกิจกรรมที่ Discord และส่งไปที่กิจกรรมในเกม Fortnite โดยเชื่อมต่อ XMPP',
+        desc_auto_claim: 'รับเกมและ DLC อัตโนมัติจาก Epic Games, Amazon Prime Gaming, GOG และ Unreal Engine (Asset)',
 
         // Button Text
         btn_toggle: 'View this page in English'
@@ -68,8 +71,10 @@ const translations = {
 
         cat_focalor: 'Auto daily login HoYoVerse Bot',
         cat_slimejuke: 'Discord Music Bot',
+        cat_melody: 'Discord Music Bot',
         cat_mc: 'Minecraft Server',
         'cat_self-fortnite': 'Self Game service',
+        cat_auto_claim: 'Self Game Service',
 
         // Descriptions
         desc_donate: 'A website for supporting and donating to encourage my development.',
@@ -77,48 +82,42 @@ const translations = {
         desc_status: 'A status page for monitoring the uptime of my bots and websites.',
         desc_github: 'A repository of Open Source code and public projects.',
 
-        desc_focalor: 'A Discord bot for daily login to HoYoVerse games and automatic code redemption (Currently in development...).',
+        desc_focalor: 'A Discord bot for daily login to HoYoVerse games and automatic code redemption.',
         desc_api: 'API system for retrieving Discord user profile data using only User ID.',
         desc_ame: 'A multi-functional Discord bot featuring daily utilities and AI chatbot.',
-        desc_slimejuke: 'A Discord music bot powered by Lavalink (Currently in development...).',
+        desc_slimejuke: 'Development cancelled, replaced by Rurina Melody.',
+        desc_melody: 'High-quality music bot for Discord. Supports playback from various platforms, modern room management, Lossless audio quality, and 384 Kbps for the best experience 🎶',
         desc_mc: 'My Minecraft server service with custom plugins and configurations.',
         'desc_self-fortnite': 'Syncs Discord activity status to Fortnite game presence via XMPP connection.',
+        desc_auto_claim: 'Automatically claim free games and DLCs from Epic Games, Amazon Prime Gaming, GOG, and Unreal Engine (Assets).',
 
         // Button Text
         btn_toggle: 'กดที่นี่เพื่อดูเว็บภาษาไทย'
     }
 };
 
-let currentLang = 'th'; // Default language
+let currentLang = 'en'; // Default language
 let currentStatusKey = 'system_loading'; 
 
 function toggleLanguage() {
-    // Switch language
     currentLang = currentLang === 'th' ? 'en' : 'th';
     updateTranslations();
 }
 
 function updateTranslations() {
-    // Update all elements with data-i18n attribute
     const elements = document.querySelectorAll('[data-i18n]');
     elements.forEach(el => {
         const key = el.getAttribute('data-i18n');
-        
         if (key === 'system_online') {
             el.innerHTML = translations[currentLang][currentStatusKey] || translations[currentLang]['system_normal'];
-        } 
-        else if (translations[currentLang][key]) {
+        } else if (translations[currentLang][key]) {
             el.innerHTML = translations[currentLang][key];
         }
     });
 
-    // Update button text
     const btn = document.getElementById('lang-toggle');
-    if (btn) {
-        btn.innerText = translations[currentLang].btn_toggle;
-    }
+    if (btn) btn.innerText = translations[currentLang].btn_toggle;
 }
-
 
 const STATUS_PAGE_URL = 'https://status.nattapat2871.me';
 
@@ -128,55 +127,38 @@ async function fetchSystemStatus() {
 
     try {
         const response = await fetch(API_URL);
-    
         if (!response.ok) throw new Error('Network response was not ok');
-        
         const data = await response.json();
         
         dotElement.classList.remove('normal', 'warning', 'critical');
-
         if (data.status === 'normal') {
-            // เขียว: ทุกอย่างปกติ
             currentStatusKey = 'system_normal';
             dotElement.classList.add('normal');
         } else {
-            // เหลือง: มีบางอย่าง Offline (Backend ส่ง warning มา)
             currentStatusKey = 'system_warning';
             dotElement.classList.add('warning');
         }
-
     } catch (error) {
         console.error('Error fetching status:', error);
-        
-        // แดง: เชื่อมต่อ API ไม่ได้เลย (เว็บล่มหรือเน็ตหลุด)
         currentStatusKey = 'system_critical'; 
         dotElement.classList.remove('normal', 'warning');
         dotElement.classList.add('critical');
     }
-
-    // อัปเดตข้อความบนหน้าจอทันที
     updateTranslations();
 }
 
-
-// ... (ส่วน Dictionary Translations เหมือนเดิม) ...
-
 // ==========================================
-// Stats System (View + Like) - Optimized
+// Stats System (View + Like)
 // ==========================================
 
 const CURRENT_DOMAIN = window.location.hostname;
-const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-const API_BASE = isLocal ? 'http://localhost:8800' : 'https://api.ame.nattapat2871.me';
+// [แก้ไข] ใช้ API ของจริงเสมอ ไม่ว่าจะรันบน localhost หรือไม่
+const API_BASE = 'https://api.ame.nattapat2871.me';
 
-// URL APIs
-// [ใหม่] API รวมยอด (เรียกทีเดียวได้ครบ)
 const PAGE_STATS_API_URL = `${API_BASE}/api/page-stats?site=${CURRENT_DOMAIN}`;
-// API สำหรับการกระทำ (Update)
 const VIEW_UPDATE_API_URL = `${API_BASE}/api/view?site=${CURRENT_DOMAIN}`;
 const LIKE_UPDATE_API_URL = `${API_BASE}/api/like?site=${CURRENT_DOMAIN}`;
 
-// Helper Cookie Functions
 function setCookie(name, value, hours) {
     const date = new Date();
     const timeToAdd = hours ? (hours * 60 * 60 * 1000) : (10 * 365 * 24 * 60 * 60 * 1000); 
@@ -199,7 +181,6 @@ function deleteCookie(name) {
     document.cookie = name + '=; Max-Age=-99999999; path=/';
 }
 
-// --- Main Function: Load Everything Together ---
 async function initStatsSystem() {
     const viewCounterElement = document.getElementById('view-counter');
     const likeCounterElement = document.getElementById('like-count');
@@ -207,88 +188,244 @@ async function initStatsSystem() {
 
     if (!viewCounterElement || !likeCounterElement) return;
 
-    // 1. ตรวจสอบสถานะปุ่ม Like (จาก Cookie) เพื่อแสดงสีแดงทันที (ไม่ต้องรอ API)
     const likeCookieName = `liked_${CURRENT_DOMAIN}`;
     let isLiked = getCookie(likeCookieName) === 'true';
     if (isLiked) {
         likeBtn.classList.add('active');
     }
 
-    // 2. เรียก API เดียว เพื่อดึงทั้ง View และ Like พร้อมกัน (เร็ว!)
     try {
         const response = await fetch(PAGE_STATS_API_URL);
         if (!response.ok) throw new Error('Stats API Error');
         const data = await response.json();
 
-        // แสดงผลทันที
         viewCounterElement.innerText = data.view_count.toLocaleString();
         likeCounterElement.innerText = data.like_count.toLocaleString();
 
-        // 3. (เบื้องหลัง) เช็คว่าต้องนับ View เพิ่มไหม
         checkAndIncrementView(data.view_count);
-
     } catch (error) {
         console.error('Error loading stats:', error);
         viewCounterElement.innerText = '-';
         likeCounterElement.innerText = '-';
     }
 
-    // 4. ตั้งค่าปุ่มกด Like
     setupLikeButton(likeBtn, likeCounterElement, likeCookieName, isLiked);
 }
 
-// ฟังก์ชันนับ View เพิ่ม (ทำงานเงียบๆ เบื้องหลัง)
 async function checkAndIncrementView(currentCount) {
     const viewCookieName = `viewed_${CURRENT_DOMAIN}`;
-    
-    // ถ้าไม่มี Cookie แปลว่าเป็นคนใหม่ -> สั่งบวกยอด
     if (!getCookie(viewCookieName)) {
-        setCookie(viewCookieName, 'true', 12); // เก็บประวัติ 12 ชม.
-        
+        setCookie(viewCookieName, 'true', 12); 
         try {
             const res = await fetch(VIEW_UPDATE_API_URL, { method: 'POST' });
             const data = await res.json();
-            // อัปเดตตัวเลขหน้าเว็บอีกครั้งให้เป็นยอดล่าสุด
             document.getElementById('view-counter').innerText = data.count.toLocaleString();
         } catch (e) { console.error('View increment error:', e); }
     }
 }
 
-// ฟังก์ชันจัดการปุ่ม Like
 function setupLikeButton(btn, counterElement, cookieName, initialState) {
     let isLiked = initialState;
 
     btn.addEventListener('click', async () => {
-        // Toggle สถานะ
         isLiked = !isLiked;
-        
-        // อัปเดต UI ทันที (Optimistic UI) - ไม่ต้องรอ Server ตอบกลับ
         let currentNum = parseInt(counterElement.innerText.replace(/,/g, '')) || 0;
         
         if (isLiked) {
-            // กด Like
             btn.classList.add('active');
             counterElement.innerText = (currentNum + 1).toLocaleString();
             setCookie(cookieName, 'true'); 
-            fetch(`${LIKE_UPDATE_API_URL}&action=like`, { method: 'POST' }); // ส่งข้อมูลไปบอก Server
+            fetch(`${LIKE_UPDATE_API_URL}&action=like`, { method: 'POST' }); 
         } else {
-            // เอา Like ออก
             btn.classList.remove('active');
             counterElement.innerText = Math.max(0, currentNum - 1).toLocaleString();
             deleteCookie(cookieName);
-            fetch(`${LIKE_UPDATE_API_URL}&action=unlike`, { method: 'POST' }); // ส่งข้อมูลไปบอก Server
+            fetch(`${LIKE_UPDATE_API_URL}&action=unlike`, { method: 'POST' }); 
         }
     });
 }
 
+// ==========================================
+// Discord WebSocket System
+// ==========================================
+
+const DISCORD_WS_URL = 'wss://api.ame.nattapat2871.me/ws/v1/user/1007237437627572275';
+
+function connectDiscordWS() {
+    const ws = new WebSocket(DISCORD_WS_URL);
+
+    // Elements
+    const avatarEl = document.getElementById('dc-avatar');
+    const decorationEl = document.getElementById('dc-decoration');
+    const statusDotEl = document.getElementById('dc-status');
+    const usernameEl = document.getElementById('dc-username');
+    const customStatusEl = document.getElementById('dc-custom-status');
+    const activityBox = document.getElementById('dc-activity-box');
+    const activityImg = document.getElementById('dc-activity-img');
+    const activitySmall = document.getElementById('dc-activity-small');
+    const activityName = document.getElementById('dc-activity-name');
+    const activityState = document.getElementById('dc-activity-state');
+    const activityTime = document.getElementById('dc-activity-time');
+
+    // Guild Elements
+    const guildContainer = document.getElementById('dc-guild-tag-container');
+    const guildBadgeEl = document.getElementById('dc-guild-badge');
+    const guildTextEl = document.getElementById('dc-guild-tag-text');
+
+    ws.onopen = () => {
+        console.log('Connected to Discord WebSocket');
+        if(customStatusEl) customStatusEl.innerText = "Connected";
+    };
+
+    ws.onmessage = (event) => {
+        try {
+            const data = JSON.parse(event.data);
+            const ame = data.ame; // Access the 'ame' object
+            
+            if (!ame || !ame.user) return;
+
+            const user = ame.user;
+
+            // 1. Update Profile Info
+            usernameEl.innerText = user.username;
+
+            // 2. Avatar (GIF Support)
+            let avatarFormat = 'webp';
+            if (user.avatar && user.avatar.startsWith('a_')) {
+                avatarFormat = 'gif'; 
+            }
+
+            if (user.avatar) {
+                avatarEl.src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${avatarFormat}?size=1024&animated=true`;
+            } else {
+                avatarEl.src = `https://cdn.discordapp.com/embed/avatars/${parseInt(user.discriminator || 0) % 5}.png`;
+            }
+
+            // Avatar Decoration
+            if (user.avatar_decoration_data && user.avatar_decoration_data.asset) {
+                decorationEl.src = `https://cdn.discordapp.com/avatar-decoration-presets/${user.avatar_decoration_data.asset}.png?size=96&passthrough=true`;
+                decorationEl.style.display = 'block';
+            } else {
+                decorationEl.style.display = 'none';
+            }
+
+            // 3. Guild Badge & Tag (Pill Style)
+            if (user.primary_guild) {
+                // Set Tag Text
+                if (user.primary_guild.tag) {
+                    guildTextEl.innerText = user.primary_guild.tag;
+                } else {
+                    guildTextEl.innerText = "";
+                }
+
+                // Set Badge Image
+                if (user.primary_guild.badge) {
+                    const guildId = user.primary_guild.identity_guild_id;
+                    const badgeHash = user.primary_guild.badge;
+                    guildBadgeEl.src = `https://cdn.discordapp.com/clan-badges/${guildId}/${badgeHash}.png?size=32`;
+                    guildBadgeEl.style.display = 'block';
+                } else {
+                    guildBadgeEl.style.display = 'none';
+                }
+
+                // Show Container if either tag or badge exists
+                if (user.primary_guild.tag || user.primary_guild.badge) {
+                    guildContainer.style.display = 'inline-flex';
+                } else {
+                    guildContainer.style.display = 'none';
+                }
+
+            } else {
+                guildContainer.style.display = 'none';
+            }
+
+            // 4. Status Color
+            statusDotEl.className = 'discord-status-dot'; // reset
+            const status = ame.discord_status || 'offline';
+            statusDotEl.classList.add(`status-${status}`);
+
+            // 5. Update Custom Status / Bio
+            if (status === 'offline') {
+                customStatusEl.innerText = "Currently Offline";
+                activityBox.style.display = 'none';
+            } else {
+                customStatusEl.innerText = ame.user_profile?.bio?.split('\n')[0] || "Online"; 
+            }
+
+            // 6. Update Activity
+            const activities = ame.activities || [];
+            const realActivity = activities.find(a => a.type !== 4);
+
+            if (realActivity) {
+                activityBox.style.display = 'flex';
+                activityName.innerText = realActivity.name;
+                activityState.innerText = realActivity.state || realActivity.details || "";
+                
+                // Images
+                if (realActivity.assets) {
+                    if (realActivity.assets.large_image) {
+                        let largeImgUrl = realActivity.assets.large_image;
+                        if (largeImgUrl.startsWith('mp:')) {
+                             largeImgUrl = largeImgUrl.replace('mp:', 'https://media.discordapp.net/');
+                        }
+                        activityImg.src = largeImgUrl;
+                    } else {
+                         activityImg.src = `https://d2.alternativeto.net/dist/icons/discord_140974.png?width=128&height=128&mode=crop&upscale=false`;
+                    }
+
+                    if (realActivity.assets.small_image) {
+                        let smallImgUrl = realActivity.assets.small_image;
+                        if (smallImgUrl.startsWith('mp:')) {
+                             smallImgUrl = smallImgUrl.replace('mp:', 'https://media.discordapp.net/');
+                        }
+                        activitySmall.src = smallImgUrl;
+                        activitySmall.style.display = 'block';
+                    } else {
+                        activitySmall.style.display = 'none';
+                    }
+                } else {
+                    activityImg.src = `https://d2.alternativeto.net/dist/icons/discord_140974.png?width=128&height=128&mode=crop&upscale=false`;
+                    activitySmall.style.display = 'none';
+                }
+                
+                // Time Elapsed
+                if (realActivity.timestamps && realActivity.timestamps.start) {
+                    const startTime = realActivity.timestamps.start;
+                    const elapsed = Math.floor((Date.now() - startTime) / 1000 / 60); 
+                    activityTime.innerText = `${elapsed} mins elapsed`;
+                    activityTime.style.display = 'block';
+                } else {
+                    activityTime.style.display = 'none';
+                }
+
+            } else {
+                activityBox.style.display = 'none';
+            }
+
+        } catch (err) {
+            console.error('Error parsing WS data:', err);
+        }
+    };
+
+    ws.onclose = () => {
+        console.log('Discord WebSocket Closed. Reconnecting in 5s...');
+        if(customStatusEl) customStatusEl.innerText = "Offline (Reconnecting...)";
+        statusDotEl.className = 'discord-status-dot status-offline';
+        setTimeout(connectDiscordWS, 5000);
+    };
+    
+    ws.onerror = (err) => {
+        console.error('WebSocket Error:', err);
+    };
+}
+
 // เรียกใช้งาน
 document.addEventListener('DOMContentLoaded', () => {
-    // ... (ส่วนอื่นๆ ของเดิม) ...
     const statusLink = document.getElementById('status-link');
     if (statusLink) statusLink.href = STATUS_PAGE_URL;
     fetchSystemStatus();
     setInterval(fetchSystemStatus, 60000);
     
-    // เรียกใช้ระบบ Stats แบบใหม่
     initStatsSystem();
+    connectDiscordWS();
 });
