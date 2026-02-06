@@ -500,7 +500,7 @@ async function fetchComputerStats() {
 
         // 6. Network (Ping & Speed)
         if (data.network) {
-            elPing.innerHTML = `<i class="fa-solid fa-stopwatch"></i> ${data.network.ping_ms} ms`;
+            elPing.innerHTML = `<i class="fa-solid fa-stopwatch"></i> Ping ${data.network.ping_ms} ms`;
             
             // Speed
             const down = data.network.speed_in_mbps ? data.network.speed_in_mbps.toFixed(2) : "0.00";
