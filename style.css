@@ -691,3 +691,217 @@ body {
         gap: 10px;
     }
 }
+
+/* --- System Stats Widget (Added) --- */
+.stats-widget {
+    flex-direction: column; /* เปลี่ยนแนวเป็นแนวตั้ง */
+    align-items: flex-start;
+    margin-top: 20px;
+    gap: 15px;
+    background: linear-gradient(135deg, rgba(20, 15, 35, 0.95) 0%, rgba(30, 20, 50, 0.95) 100%);
+}
+
+.stats-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stats-header i {
+    font-size: 2rem;
+    color: var(--accent-color);
+}
+
+.stats-title h3 {
+    font-size: 1.2rem;
+    margin: 0;
+    color: var(--text-main);
+}
+.stats-title p {
+    font-size: 0.85rem;
+    margin: 0;
+    color: var(--text-secondary);
+}
+
+.stats-grid {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 0.9rem;
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 80px;
+}
+
+.stat-value {
+    color: var(--text-main);
+    text-align: right;
+    font-weight: 500;
+}
+
+.stat-value-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    text-align: right;
+    font-size: 0.85rem;
+    color: var(--text-main);
+}
+
+/* Progress Bar Style */
+.stat-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.progress-track {
+    width: 100%;
+    height: 8px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-color), #c4b0e2);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+/* Disk Items */
+.disk-item {
+    margin-top: 5px;
+}
+
+.stats-footer {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+.divider-line {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 5px 0;
+}
+
+/* หัวข้อหมวดย่อย */
+.stat-group-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+/* ตารางอุปกรณ์ (Peripherals) */
+.peripherals-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* แบ่ง 2 คอลัมน์ */
+    gap: 10px;
+    width: 100%;
+}
+
+.peripheral-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.03);
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.peripheral-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-main);
+}
+
+.peripheral-item i {
+    color: var(--accent-color);
+    width: 16px;
+    text-align: center;
+}
+
+/* Network Speed Box */
+.network-speeds-box {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.net-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    font-family: monospace; /* ให้ตัวเลขดูเป็น Digital */
+}
+
+.net-item i.fa-download { color: #4cd137; }
+.net-item i.fa-upload { color: #00a8ff; }
+
+/* Responsive สำหรับมือถือ */
+@media (max-width: 480px) {
+    .peripherals-grid {
+        grid-template-columns: 1fr; /* มือถือให้เหลือ 1 แถว */
+    }
+}
+
+@media (max-width: 768px) {
+    .stat-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+    }
+    .stat-value, .stat-value-list {
+        text-align: left;
+        align-items: flex-start;
+        padding-left: 24px; /* เว้นระยะให้ตรงกับไอคอนข้างบน */
+    }
+}
+/* [ADD] ปรับขนาดตัวอักษรสำหรับค่าที่มีข้อยาวๆ เช่น RAM/Disk */
+.stat-value.long-text {
+    font-size: 0.8rem;
+    white-space: nowrap; /* พยายามให้อยู่บรรทัดเดียว */
+}
+
+/* ถ้าจอมือถือ ให้ยอมขึ้นบรรทัดใหม่ได้ */
+@media (max-width: 480px) {
+    .stat-value.long-text {
+        white-space: normal;
+        text-align: right;
+    }
+}

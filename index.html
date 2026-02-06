@@ -111,9 +111,9 @@
                 </div>
             </a>
 
-            <a href="https://api.ame.nattapat2871.me" target="_blank" class="card">
+            <a href="https://ame-api.nattapat2871.me" target="_blank" class="card">
                 <div class="card-image">
-                    <img src="https://api.ame.nattapat2871.me/favicon.ico" alt="Ame API">
+                    <img src="https://ame-api.nattapat2871.me/favicon.ico" alt="Ame API">
                 </div>
                 <div class="card-content">
                     <h3>Ame API</h3>
@@ -274,6 +274,86 @@
                         <i class="fa-solid fa-envelope"></i>
                     </a>
                 </div>
+                <div id="computer-stats-card" class="discord-widget stats-widget" style="display: none;">
+                <div class="stats-header">
+                    <i class="fa-solid fa-server"></i>
+                    <div class="stats-title">
+                        <h3 id="pc-hostname">Loading System Stats...</h3>
+                        <p id="pc-os">Connecting to Ame API...</p>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-row">
+                        <span class="stat-label"><i class="fa-solid fa-microchip"></i> CPU</span>
+                        <span class="stat-value" id="pc-cpu">-</span>
+                    </div>
+                    
+                    <div class="stat-row">
+                        <span class="stat-label"><i class="fa-solid fa-gamepad"></i> GPU</span>
+                        <div class="stat-value-list" id="pc-gpu">-</div>
+                    </div>
+
+                    <div class="stat-group">
+                        <div class="stat-row">
+                            <span class="stat-label"><i class="fa-solid fa-memory"></i> RAM</span>
+                            <span class="stat-value" id="pc-ram-text">-</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="pc-ram-bar" style="width: 0%;"></div>
+                        </div>
+                    </div>
+
+                    <div id="pc-disk-container" class="disk-container">
+                        </div>
+
+                    <div class="divider-line"></div>
+                    <div class="stat-group-title">MY GEAR</div>
+                    
+                    <div class="peripherals-grid">
+                        <div class="peripheral-item" title="Monitor">
+                            <i class="fa-solid fa-desktop"></i>
+                            <span>Acer VG270 M3</span>
+                        </div>
+                        <div class="peripheral-item" title="Keyboard">
+                            <i class="fa-regular fa-keyboard"></i>
+                            <span>EGA Type CMK1</span>
+                        </div>
+                        <div class="peripheral-item" title="Mouse">
+                            <i class="fa-solid fa-computer-mouse"></i>
+                            <span>VXE R1 Pro</span>
+                        </div>
+                        <div class="peripheral-item" title="Headset">
+                            <i class="fa-solid fa-headphones"></i>
+                            <span>G435 Wireless</span>
+                        </div>
+                    </div>
+
+                    <div class="divider-line"></div>
+                    <div class="stat-group-title">NETWORK</div>
+                    
+                    <div class="stat-row">
+                        <span class="stat-label"><i class="fa-solid fa-wifi"></i> Provider</span>
+                        <span class="stat-value">AIS GOMO 15 Mbps</span>
+                    </div>
+
+                    <div class="network-speeds-box">
+                        <div class="net-item">
+                            <i class="fa-solid fa-download"></i>
+                            <span id="net-in">0.0 Mbps</span>
+                        </div>
+                        <div class="net-item">
+                            <i class="fa-solid fa-upload"></i>
+                            <span id="net-out">0.0 Mbps</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-footer">
+                        <span id="pc-ping"><i class="fa-solid fa-stopwatch"></i> ping - ms</span>
+                        <span id="pc-updated">Last update: -</span>
+                     </div>
+                </div>
+            </div>
 
             </div>
 

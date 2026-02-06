@@ -153,7 +153,7 @@ async function fetchSystemStatus() {
 
 const CURRENT_DOMAIN = window.location.hostname;
 // [แก้ไข] ใช้ API ของจริงเสมอ ไม่ว่าจะรันบน localhost หรือไม่
-const API_BASE = 'https://api.ame.nattapat2871.me';
+const API_BASE = 'https://ame-api.nattapat2871.me';
 
 const PAGE_STATS_API_URL = `${API_BASE}/api/page-stats?site=${CURRENT_DOMAIN}`;
 const VIEW_UPDATE_API_URL = `${API_BASE}/api/view?site=${CURRENT_DOMAIN}`;
@@ -249,7 +249,7 @@ function setupLikeButton(btn, counterElement, cookieName, initialState) {
 // Discord WebSocket System
 // ==========================================
 
-const DISCORD_WS_URL = 'wss://api.ame.nattapat2871.me/ws/v1/user/1007237437627572275';
+const DISCORD_WS_URL = 'wss://ame-api.nattapat2871.me/ws/v1/user/1007237437627572275';
 
 function connectDiscordWS() {
     const ws = new WebSocket(DISCORD_WS_URL);
@@ -419,6 +419,103 @@ function connectDiscordWS() {
     };
 }
 
+
+async function fetchComputerStats() {
+    const API_URL = 'https://ame-api.nattapat2871.me/api/view-stats/nattapat2871';
+    const widget = document.getElementById('computer-stats-card');
+    
+    // Elements
+    const elHostname = document.getElementById('pc-hostname');
+    const elOS = document.getElementById('pc-os');
+    const elCPU = document.getElementById('pc-cpu');
+    const elGPU = document.getElementById('pc-gpu');
+    const elRAMText = document.getElementById('pc-ram-text');
+    const elRAMBar = document.getElementById('pc-ram-bar');
+    const elDiskContainer = document.getElementById('pc-disk-container');
+    const elPing = document.getElementById('pc-ping');
+    const elUpdated = document.getElementById('pc-updated');
+    
+    // Network Elements
+    const elNetIn = document.getElementById('net-in');
+    const elNetOut = document.getElementById('net-out');
+
+    try {
+        const response = await fetch(API_URL);
+        if (!response.ok) throw new Error('Stats API Error');
+        
+        const rawData = await response.json();
+        // ดึง object ตัวแรก (ชื่อเครื่อง MSI-Nattapat)
+        const machineData = Object.values(rawData)[0];
+        
+        if (!machineData || !machineData.data) throw new Error('Invalid Data');
+
+        const data = machineData.data;
+
+        // Show Widget
+        widget.style.display = 'flex';
+
+        // 1. Basic Info
+        elHostname.innerText = data.computer_detail.hostname || 'Unknown Host';
+        elOS.innerText = `${data.computer_detail.os}`;
+        elUpdated.innerText = `Updated: ${machineData.last_updated}`;
+
+        // 2. CPU
+        elCPU.innerText = (data.cpu && data.cpu.length > 0) ? data.cpu[0].split('@')[0].trim() : '-';
+
+        // 3. GPU
+        if (data.gpu && data.gpu.length > 0) {
+            elGPU.innerHTML = data.gpu.map(g => `<span>${g}</span>`).join('');
+        } else {
+            elGPU.innerText = '-';
+        }
+
+        // 4. RAM (ปรับรูปแบบใหม่: 74.1% Free: 4.07GB Total: 15.71GB)
+        if (data.ram) {
+            elRAMText.innerText = `${data.ram.percent_used}% Free: ${data.ram.available} Total: ${data.ram.total}`;
+            elRAMText.classList.add('long-text'); // เพิ่มคลาสปรับขนาดตัวอักษร
+
+            elRAMBar.style.width = `${data.ram.percent_used}%`;
+            if (data.ram.percent_used > 85) elRAMBar.style.backgroundColor = '#ff4757';
+            else elRAMBar.style.backgroundColor = ''; 
+        }
+
+        // 5. Disks (ปรับรูปแบบใหม่)
+        if (data.disks && data.disks.length > 0) {
+            elDiskContainer.innerHTML = data.disks.map(disk => {
+                let colorClass = '';
+                if (disk.percent > 90) colorClass = 'background-color: #ff4757;'; 
+
+                return `
+                <div class="stat-group disk-item">
+                    <div class="stat-row">
+                        <span class="stat-label"><i class="fa-solid fa-hard-drive"></i> ${disk.device}</span>
+                        <span class="stat-value long-text">${disk.percent}% Free: ${disk.free} Total: ${disk.total}</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: ${disk.percent}%; ${colorClass}"></div>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        // 6. Network (Ping & Speed)
+        if (data.network) {
+            elPing.innerHTML = `<i class="fa-solid fa-stopwatch"></i> ${data.network.ping_ms} ms`;
+            
+            // Speed
+            const down = data.network.speed_in_mbps ? data.network.speed_in_mbps.toFixed(2) : "0.00";
+            const up = data.network.speed_out_mbps ? data.network.speed_out_mbps.toFixed(2) : "0.00";
+            
+            if(elNetIn) elNetIn.innerText = `${down} Mbps`;
+            if(elNetOut) elNetOut.innerText = `${up} Mbps`;
+        }
+
+    } catch (error) {
+        console.error('Error fetching PC stats:', error);
+        if(elHostname) elHostname.innerText = "System Offline";
+    }
+}
+
 // เรียกใช้งาน
 document.addEventListener('DOMContentLoaded', () => {
     const statusLink = document.getElementById('status-link');
@@ -428,4 +525,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     initStatsSystem();
     connectDiscordWS();
+    
+    fetchComputerStats();
+    setInterval(fetchComputerStats, 10000);
 });
+
