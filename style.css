@@ -124,8 +124,7 @@ body {
 /* --- Grid Cards --- */
 .content-area {
     display: grid;
-    /* ใช้ minmax เพื่อให้การ์ดขยายเต็มพื้นที่และไม่ถูกบีบจนแคบเกินไป */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     width: 100%;
 }
@@ -174,27 +173,6 @@ body {
 .description { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; }
 
 /* --- Mobile Responsive --- */
-@media (max-width: 992px) {
-    .header-info { 
-        flex-direction: column; 
-        gap: 30px; 
-    }
-    .header-right { 
-        text-align: left; 
-        align-items: flex-start; 
-    }
-    .content-area { 
-        /* เมื่อหน้าจอเล็กกว่า 992px ให้แสดงผลแถวเดียว 100% */
-        grid-template-columns: 1fr; 
-    }
-    .hero-title { 
-        font-size: 2.5rem; 
-    }
-    .contact-section {
-        grid-column: span 1; /* ปรับการจองพื้นที่ของส่วนติดต่อให้เหลือ 1 คอลัมน์ */
-    }
-}
-
 @media (max-width: 768px) {
     .header-info { flex-direction: column; gap: 30px; }
     .header-right { text-align: left; align-items: flex-start; }
@@ -925,5 +903,21 @@ body {
     .stat-value.long-text {
         white-space: normal;
         text-align: right;
+    }
+}
+
+/* บังคับการแสดงผลใหม่ เมื่อหน้าจอเล็กกว่า 900px */
+@media (max-width: 900px) {
+    .content-area {
+        display: flex !important;       /* เปลี่ยนระบบจาก Grid เป็น Flex ทันที */
+        flex-direction: column !important; /* สั่งให้เรียงของเป็น "แนวตั้ง" เท่านั้น */
+        gap: 20px;
+    }
+
+    .card {
+        width: 100% !important;        /* บังคับการ์ดให้กว้างเต็มความกว้างจอ */
+        max-width: 100% !important;    /* ห้ามเกินขอบ */
+        min-width: auto !important;    /* ยกเลิกขนาดขั้นต่ำที่อาจจะดันโครงสร้าง */
+        margin: 0 !important;
     }
 }
