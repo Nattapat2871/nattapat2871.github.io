@@ -41,8 +41,8 @@ const translations = {
         desc_slimejuke: 'ยกเลิกการพัฒนาเพราะเปลี่ยนไปใช้ Rurina Melody',
         desc_melody: 'บอทเพลงคุณภาพสูงสำหรับ Discord รองรับการเล่นเพลงจากหลากหลายแพลตฟอร์ม พร้อมระบบจัดการห้องเพลงที่ทันสมัย และคุณภาพเสียงระดับ Lossless และคุณภาพเสียง 384 Kbps เพื่อให้คุณได้รับประสบการณ์ที่ดีที่สุด 🎶',
         desc_mc: 'เซิร์ฟเวอร์ Minecraft ที่ผมเปิดให้บริการ พร้อมระบบ Custom Plugin',
-        'desc_self-fortnite': 'ส่งสถานะกิจกรรมที่ Discord และส่งไปที่กิจกรรมในเกม Fortnite โดยเชื่อมต่อ XMPP',
-        desc_auto_claim: 'รับเกมและ DLC อัตโนมัติจาก Epic Games, Amazon Prime Gaming, GOG และ Unreal Engine (Asset)',
+        cat_discord_quest: "Automation Script",
+        desc_discord_quest: "สคริปต์ทำเควสและกดรับของรางวัล Discord อัตโนมัติผ่าน Console ทำงานสะดวกรวดเร็ว พร้อมระบบแสดงความคืบหน้าแบบเรียลไทม์ (Real-time Sync)",
 
         // Button Text
         btn_toggle: 'View this page in English'
@@ -88,8 +88,8 @@ const translations = {
         desc_slimejuke: 'Development cancelled, replaced by Rurina Melody.',
         desc_melody: 'High-quality music bot for Discord. Supports playback from various platforms, modern room management, Lossless audio quality, and 384 Kbps for the best experience 🎶',
         desc_mc: 'My Minecraft server service with custom plugins and configurations.',
-        'desc_self-fortnite': 'Syncs Discord activity status to Fortnite game presence via XMPP connection.',
-        desc_auto_claim: 'Automatically claim free games and DLCs from Epic Games, Amazon Prime Gaming, GOG, and Unreal Engine (Assets).',
+        cat_discord_quest: "Automation Script",
+        desc_discord_quest: "Automated Discord quest completion and reward claiming script via Console. Features safe execution and real-time progress syncing.",
 
         // Button Text
         btn_toggle: 'กดที่นี่เพื่อดูเว็บภาษาไทย'
