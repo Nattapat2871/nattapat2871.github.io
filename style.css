@@ -802,6 +802,66 @@ body {
     opacity: 0.7;
 }
 
+/* === PC Online / Offline Status Styles === */
+
+/* Online text: green dot + text */
+.status-online-text {
+    color: #3ba55c !important;
+    opacity: 1 !important;
+    font-weight: 500;
+}
+.status-online-text i {
+    color: #3ba55c;
+    text-shadow: 0 0 6px rgba(59, 165, 92, 0.6);
+    animation: pulseGreen 2s ease-in-out infinite;
+}
+
+/* Offline text: red power icon + text */
+.status-offline-text {
+    color: #ff4757 !important;
+    opacity: 1 !important;
+    font-weight: 500;
+}
+.status-offline-text i {
+    color: #ff4757;
+    animation: pulseRed 1.5s ease-in-out infinite;
+}
+
+/* Widget state: Offline dimming effect */
+.stats-widget.pc-offline {
+    position: relative;
+}
+.stats-widget.pc-offline::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    pointer-events: none;
+    z-index: 5;
+    animation: fadeIn 0.5s ease;
+}
+
+/* Widget state: Online — remove overlay if exists */
+.stats-widget.pc-online::after {
+    display: none;
+}
+
+/* Pulse animations */
+@keyframes pulseGreen {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+@keyframes pulseRed {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.1); }
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 .divider-line {
     width: 100%;
     height: 1px;

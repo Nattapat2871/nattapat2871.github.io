@@ -420,6 +420,49 @@ function connectDiscordWS() {
 }
 
 
+// ==========================================
+// Time Ago Helper + Offline Detection
+// ==========================================
+
+const OFFLINE_THRESHOLD_MS = 2 * 60 * 1000; // 2 minutes — if no update for this long, consider offline
+
+/**
+ * Convert a timestamp string to a human-readable relative time.
+ * e.g. "5 seconds ago", "10 minutes ago", "2 hours ago"
+ */
+function timeAgo(dateString) {
+    // Parse the timestamp from API (format: "2026-05-23 20:44:46")
+    // Treat as local time (Bangkok / GMT+7)
+    const updated = new Date(dateString.replace(' ', 'T'));
+    const now = new Date();
+    const diffMs = now - updated;
+
+    if (diffMs < 0) return 'just now';
+
+    const seconds = Math.floor(diffMs / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours   = Math.floor(minutes / 60);
+    const days    = Math.floor(hours / 24);
+
+    if (seconds < 10)  return 'just now';
+    if (seconds < 60)  return `${seconds} seconds ago`;
+    if (minutes === 1) return '1 minute ago';
+    if (minutes < 60)  return `${minutes} minutes ago`;
+    if (hours === 1)   return '1 hour ago';
+    if (hours < 24)    return `${hours} hours ago`;
+    if (days === 1)    return '1 day ago';
+    return `${days} days ago`;
+}
+
+/**
+ * Check if the PC is offline based on last_updated timestamp
+ */
+function isPCOffline(dateString) {
+    const updated = new Date(dateString.replace(' ', 'T'));
+    const now = new Date();
+    return (now - updated) > OFFLINE_THRESHOLD_MS;
+}
+
 async function fetchComputerStats() {
     const API_URL = 'https://ame-api.nattapat2871.me/api/view-stats/nattapat2871';
     const widget = document.getElementById('computer-stats-card');
@@ -450,14 +493,31 @@ async function fetchComputerStats() {
         if (!machineData || !machineData.data) throw new Error('Invalid Data');
 
         const data = machineData.data;
+        const lastUpdated = machineData.last_updated;
+        const isOffline = isPCOffline(lastUpdated);
+        const relativeTime = timeAgo(lastUpdated);
 
         // Show Widget
         widget.style.display = 'flex';
 
+        // === Offline / Online State ===
+        if (isOffline) {
+            widget.classList.add('pc-offline');
+            widget.classList.remove('pc-online');
+            elUpdated.innerHTML = `<i class="fa-solid fa-power-off"></i> Offline — ${relativeTime}`;
+            elUpdated.classList.add('status-offline-text');
+            elUpdated.classList.remove('status-online-text');
+        } else {
+            widget.classList.add('pc-online');
+            widget.classList.remove('pc-offline');
+            elUpdated.innerHTML = `<i class="fa-solid fa-circle" style="font-size: 0.5rem; vertical-align: middle;"></i> Online — Updated ${relativeTime}`;
+            elUpdated.classList.add('status-online-text');
+            elUpdated.classList.remove('status-offline-text');
+        }
+
         // 1. Basic Info
         elHostname.innerText = data.computer_detail.hostname || 'Unknown Host';
         elOS.innerText = `${data.computer_detail.os}`;
-        elUpdated.innerText = `Updated: ${machineData.last_updated}`;
 
         // 2. CPU
         elCPU.innerText = (data.cpu && data.cpu.length > 0) ? data.cpu[0].split('@')[0].trim() : '-';
@@ -513,6 +573,16 @@ async function fetchComputerStats() {
     } catch (error) {
         console.error('Error fetching PC stats:', error);
         if(elHostname) elHostname.innerText = "System Offline";
+        if (widget) {
+            widget.classList.add('pc-offline');
+            widget.classList.remove('pc-online');
+        }
+        const elUpdated = document.getElementById('pc-updated');
+        if (elUpdated) {
+            elUpdated.innerHTML = `<i class="fa-solid fa-power-off"></i> Offline — Cannot connect`;
+            elUpdated.classList.add('status-offline-text');
+            elUpdated.classList.remove('status-online-text');
+        }
     }
 }
 
