@@ -22,6 +22,7 @@ const translations = {
         cat_monitor: 'System Monitor',
         cat_source: 'Source Code',
         
+        cat_namlauncher: 'Minecraft Launcher',
         cat_focalor: 'Auto daily login HoYoVerse Bot',
         cat_slimejuke: 'Discord Music Bot',
         cat_mc: 'Minecraft Server',
@@ -30,6 +31,7 @@ const translations = {
         cat_auto_claim: 'Self Game Service',
 
         // Descriptions
+        desc_namlauncher: 'ลันเชอร์ Minecraft รุ่นเบต้าสำหรับ Windows และ Linux รองรับบัญชี Microsoft อินสแตนซ์แยก สกิน และคอนเทนต์จาก Modrinth หรือ CurseForge',
         desc_donate: 'เว็บไซต์สำหรับการสนับสนุนและโดเนทเพื่อเป็นกำลังใจในการพัฒนา',
         desc_port: 'หน้าเว็บแนะนำตัว ประวัติผลงาน และข้อมูลการติดต่ออย่างเป็นทางการ',
         desc_status: 'หน้าเว็บสำหรับตรวจสอบสถานะการทำงาน (Uptime) ของบอทและเว็บไซต์',
@@ -43,6 +45,8 @@ const translations = {
         desc_mc: 'เซิร์ฟเวอร์ Minecraft ที่ผมเปิดให้บริการ พร้อมระบบ Custom Plugin',
         cat_discord_quest: "Automation Script",
         desc_discord_quest: "สคริปต์ทำเควสและกดรับของรางวัล Discord อัตโนมัติผ่าน Console ทำงานสะดวกรวดเร็ว พร้อมระบบแสดงความคืบหน้าแบบเรียลไทม์ (Real-time Sync)",
+        desc_self_fortnite: 'ส่งสถานะกิจกรรมที่ Discord และส่งไปที่กิจกรรมในเกม Fortnite โดยเชื่อมต่อ XMPP',
+        'desc_self-fortnite': 'ส่งสถานะกิจกรรมที่ Discord และส่งไปที่กิจกรรมในเกม Fortnite โดยเชื่อมต่อ XMPP',
 
         // Button Text
         btn_toggle: 'View this page in English'
@@ -69,14 +73,17 @@ const translations = {
         cat_monitor: 'System Monitor',
         cat_source: 'Source Code',
 
+        cat_namlauncher: 'Minecraft Launcher',
         cat_focalor: 'Auto daily login HoYoVerse Bot',
         cat_slimejuke: 'Discord Music Bot',
         cat_melody: 'Discord Music Bot',
         cat_mc: 'Minecraft Server',
-        'cat_self-fortnite': 'Self Game service',
+        cat_self_fortnite: 'Self Game Service',
+        'cat_self-fortnite': 'Self Game Service',
         cat_auto_claim: 'Self Game Service',
 
         // Descriptions
+        desc_namlauncher: 'A lightweight Windows and Linux beta Minecraft launcher with Microsoft login, isolated instances, skins, and Modrinth or CurseForge content.',
         desc_donate: 'A website for supporting and donating to encourage my development.',
         desc_port: 'Official portfolio website featuring my profile, works, and contact info.',
         desc_status: 'A status page for monitoring the uptime of my bots and websites.',
@@ -90,6 +97,8 @@ const translations = {
         desc_mc: 'My Minecraft server service with custom plugins and configurations.',
         cat_discord_quest: "Automation Script",
         desc_discord_quest: "Automated Discord quest completion and reward claiming script via Console. Features safe execution and real-time progress syncing.",
+        desc_self_fortnite: 'Sync your Discord activity status to your Fortnite in-game status via XMPP connection.',
+        'desc_self-fortnite': 'Sync your Discord activity status to your Fortnite in-game status via XMPP connection.',
 
         // Button Text
         btn_toggle: 'กดที่นี่เพื่อดูเว็บภาษาไทย'
@@ -209,7 +218,7 @@ async function initStatsSystem() {
         likeCounterElement.innerText = '-';
     }
 
-    setupLikeButton(likeBtn, likeCounterElement, likeCookieName, isLiked);
+    setupLikeButton(likeBtn, likeCounterElement, cookieName, isLiked);
 }
 
 async function checkAndIncrementView(currentCount) {
@@ -599,4 +608,3 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchComputerStats();
     setInterval(fetchComputerStats, 10000);
 });
-
