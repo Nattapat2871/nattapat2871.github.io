@@ -1,4 +1,4 @@
-/* --- ชุดสี (Theme) --- */
+/* Author: nattapat2871 (https://nattapat2871.me) */
 :root {
     --bg-main: #120a1f;
     --bg-card: #1d1133;
@@ -10,17 +10,22 @@
     --grid-line: rgba(165, 110, 255, 0.05);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
     background-color: var(--bg-main);
     color: var(--text-main);
     font-family: 'Kanit', sans-serif;
     min-height: 100vh;
-    background-image: 
+    background-image:
         linear-gradient(var(--grid-line) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
     background-size: 40px 40px;
+    animation: pageFadeIn 0.7s ease-out both;
 }
 
 .main-container {
@@ -32,26 +37,49 @@ body {
     gap: 40px;
 }
 
-/* --- Banner --- */
 .banner-wrapper {
     width: 100%;
     border-radius: 15px;
     overflow: hidden;
     border: 1px solid var(--border-color);
     box-shadow: 0 0 20px rgba(165, 110, 255, 0.2);
+    animation: bannerDropIn 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
-.banner-img { width: 100%; height: auto; display: block; }
 
-/* --- Header Info --- */
+.banner-wrapper:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 28px rgba(165, 110, 255, 0.32);
+}
+
+.banner-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 .header-info {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     gap: 40px;
     padding: 0 10px;
+    animation: fadeInUp 0.7s 0.12s ease-out both;
 }
-.header-left { flex: 1; text-align: left; }
-.header-right { flex: 1; text-align: right; display: flex; flex-direction: column; align-items: flex-end; }
+
+.header-left {
+    flex: 1;
+    text-align: left;
+}
+
+.header-right {
+    flex: 1;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
 
 .hero-title {
     font-size: 3.5rem;
@@ -59,134 +87,61 @@ body {
     margin-bottom: 20px;
     text-transform: uppercase;
     text-shadow: 0 0 10px rgba(165, 110, 255, 0.3);
+    animation: titleGlow 3.8s ease-in-out infinite alternate;
 }
-.text-accent { color: var(--accent-color); }
+
+.text-accent {
+    color: var(--accent-color);
+}
 
 .about-section h3 {
-    font-size: 1rem; color: var(--text-secondary); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
+
 .about-section p {
-    font-size: 1.1rem; line-height: 1.6; color: var(--text-secondary); max-width: 500px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    max-width: 500px;
 }
 
 .status-indicator {
-    display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: var(--text-secondary); font-size: 0.9rem;
-}
-
-.social-icons img {
-    width: 24px;
-    height: 24px;
-    display: block; /* ลบช่องว่างส่วนเกิน */
-    object-fit: contain;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 2px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
 }
 
 .dot {
-    width: 10px; 
-    height: 10px; 
-    background-color: #555; 
-    border-radius: 50%; 
+    width: 10px;
+    height: 10px;
+    background-color: #555;
+    border-radius: 50%;
     transition: all 0.3s ease;
 }
 
 .dot.normal {
-    background-color: #28a745; 
+    background-color: #28a745;
     box-shadow: 0 0 10px #28a745;
+    animation: statusPulseGreen 1.8s ease-in-out infinite;
 }
 
 .dot.warning {
-    background-color: #ffc107; 
+    background-color: #ffc107;
     box-shadow: 0 0 10px #ffc107;
+    animation: statusPulseYellow 1.8s ease-in-out infinite;
 }
 
 .dot.critical {
-    background-color: #dc3545; 
+    background-color: #dc3545;
     box-shadow: 0 0 10px #dc3545;
-}
-
-/* --- Language Button Style --- */
-.lang-btn {
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    font-family: 'Kanit', sans-serif;
-    font-size: 0.9rem;
-    text-decoration: underline;
-    cursor: pointer;
-    margin-top: 10px;
-    opacity: 0.7;
-    transition: opacity 0.3s;
-}
-.lang-btn:hover {
-    opacity: 1;
-    color: var(--accent-color);
-}
-
-/* --- Grid Cards --- */
-.content-area {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    width: 100%;
-}
-.card {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 25px;
-    text-decoration: none;
-    color: var(--text-main);
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-.card:hover {
-    transform: translateY(-5px);
-    border-color: var(--accent-color);
-    background-color: var(--bg-card-hover);
-    box-shadow: 0 5px 15px rgba(165, 110, 255, 0.1);
-}
-
-/* สไตล์สำหรับรูปภาพสี่เหลี่ยม */
-.card-image {
-    width: 70px;
-    height: 70px;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid var(--border-color);
-    flex-shrink: 0;
-}
-.card-image img { width: 100%; height: 100%; object-fit: cover; }
-
-/* สไตล์สำหรับ FontAwesome Icon */
-.card-icon {
-    width: 70px;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    font-size: 3rem;
-    color: var(--accent-color);
-}
-
-.card-content h3 { font-size: 1.2rem; margin-bottom: 5px; }
-.highlight { color: var(--accent-color); font-weight: 600; font-size: 0.95rem; margin-bottom: 10px; }
-.description { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; }
-
-/* --- Mobile Responsive --- */
-@media (max-width: 768px) {
-    .header-info { flex-direction: column; gap: 30px; }
-    .header-right { text-align: left; align-items: flex-start; }
-    .content-area { grid-template-columns: 1fr; }
-    .hero-title { font-size: 2.5rem; }
-}
-
-.status-indicator {
-    display: flex; 
-    align-items: center; 
-    gap: 10px; 
-    margin-bottom: 2px;
-    color: var(--text-secondary); 
-    font-size: 0.9rem;
+    animation: statusPulseRed 1.4s ease-in-out infinite;
 }
 
 .status-link {
@@ -204,16 +159,60 @@ body {
     opacity: 1;
     color: var(--accent-color);
     border-bottom-color: var(--accent-color);
+    transform: translateX(2px);
 }
 
-/* --- Social Icons (Header) --- */
+.status-link:focus-visible,
+.lang-btn:focus-visible,
+.social-icons a:focus-visible,
+.social-btn:focus-visible,
+.card:focus-visible,
+.discord-widget:focus-visible,
+.page-tab:focus-visible,
+.resume-value-link:focus-visible,
+.like-item:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 4px;
+    box-shadow: 0 0 0 4px rgba(165, 110, 255, 0.18);
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-family: 'Kanit', sans-serif;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 10px;
+    opacity: 0.7;
+    transition: color 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+.lang-btn:hover {
+    opacity: 1;
+    color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.lang-btn:active,
+.page-tab:active,
+.social-icons a:active,
+.social-btn:active,
+.card:active,
+.discord-widget:active,
+.like-item:active {
+    transform: scale(0.96);
+}
+
 .social-icons {
     display: flex;
     gap: 15px;
-    margin-bottom: 20px; /* เว้นระยะห่างจากสถานะ */
+    margin-bottom: 20px;
 }
 
 .social-icons a {
+    position: relative;
     color: var(--text-secondary);
     font-size: 1.6rem;
     transition: all 0.3s ease;
@@ -223,9 +222,16 @@ body {
     width: 45px;
     height: 45px;
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.05); /* พื้นหลังจางๆ */
+    background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--border-color);
     text-decoration: none;
+}
+
+.social-icons img {
+    width: 24px;
+    height: 24px;
+    display: block;
+    object-fit: contain;
 }
 
 .social-icons a:hover {
@@ -236,182 +242,588 @@ body {
     transform: translateY(-3px);
 }
 
-/* --- Footer --- */
-.site-footer {
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border-color);
-    text-align: center;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    opacity: 0.7;
+.social-icons a:hover i,
+.social-icons a:hover img {
+    animation: iconPop 0.42s cubic-bezier(0.2, 1.4, 0.35, 1) both;
 }
 
-/* --- Floating Stats Widget --- */
-.stats-floating-widget {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    z-index: 1000;
-    
-    background-color: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(5px);
-    color: #ffffff;
-    padding: 8px 15px;
-    border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    
-    font-family: 'Kanit', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    user-select: none;
-    animation: fadeInUp 0.5s ease-out;
-}
-
-.divider { color: rgba(255, 255, 255, 0.3); font-size: 12px; }
-
-/* Stat Item General */
-.stat-item {
-    display: flex;
-    align-items: center;
-    cursor: default;
-    transition: all 0.3s ease;
-}
-
-.stat-item i { margin-right: 6px; }
-
-/* --- Like Button Specific --- */
-.like-item {
-    cursor: pointer; /* เมาส์เป็นรูปนิ้วกดได้ */
-}
-
-.like-item:hover {
-    transform: scale(1.1); /* ขยายเล็กน้อยเมื่อชี้ */
-}
-
-/* สถานะ Active (เมื่อกด Like แล้ว) */
-.like-item.active {
-    color: #ff4757; /* สีแดง */
-}
-
-.like-item.active i {
-    animation: heartBeat 0.3s forwards; /* อนิเมชันหัวใจเต้น */
-}
-
-/* --- View Item Specific (Animation เดิม) --- */
-.view-item .hover-text {
-    max-width: 0;
-    opacity: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    transition: all 0.4s ease-in-out;
-}
-
-.view-item:hover .hover-text {
-    max-width: 60px;
-    opacity: 1;
-    margin-right: 5px;
-}
-
-/* Animations */
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes heartBeat {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.3); }
-    100% { transform: scale(1); }
-}
-
-/* Mobile */
-@media (max-width: 600px) {
-    .stats-floating-widget { bottom: 10px; left: 10px; padding: 6px 12px; font-size: 12px; }
-}
-
-/* --- Custom Animated Tooltip --- */
-.social-icons a {
-    position: relative; /* จำเป็นสำหรับการจัดตำแหน่ง Tooltip */
-}
-
-/* ตัวกล่องข้อความ Tooltip */
 .social-icons a::before {
-    content: attr(data-tooltip); /* ดึงข้อความจาก HTML มาแสดง */
+    content: attr(data-tooltip);
     position: absolute;
-    bottom: 125%; /* ให้อยู่เหนือปุ่ม */
+    bottom: 125%;
     left: 50%;
-    transform: translateX(-50%) translateY(10px); /* ตั้งต้นให้ต่ำลงมานิดหน่อย (รออนิเมชั่น) */
-    
-    background-color: rgba(18, 10, 31, 0.95); /* สีพื้นหลังเดียวกับธีม แต่โปร่งแสงนิดๆ */
+    transform: translateX(-50%) translateY(10px);
+    background-color: rgba(18, 10, 31, 0.95);
     color: var(--text-main);
     padding: 6px 12px;
     border-radius: 6px;
     font-size: 0.85rem;
     font-weight: 500;
     white-space: nowrap;
-    
     opacity: 0;
     visibility: hidden;
-    pointer-events: none; /* ไม่ให้เมาส์ไปโดน Tooltip */
-    
+    pointer-events: none;
     border: 1px solid var(--border-color);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* อนิเมชั่นแบบเด้งๆ */
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     z-index: 100;
 }
 
-/* ตัวลูกศรสามเหลี่ยมข้างล่างกล่อง */
 .social-icons a::after {
     content: '';
     position: absolute;
-    bottom: 115%; /* ต้องสอดคล้องกับกล่องข้างบน */
+    bottom: 115%;
     left: 50%;
     transform: translateX(-50%) translateY(10px);
-    
     border-width: 6px;
     border-style: solid;
-    border-color: var(--border-color) transparent transparent transparent; /* สามเหลี่ยมสีเดียวกับขอบ */
-    
+    border-color: var(--border-color) transparent transparent transparent;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     z-index: 100;
 }
 
-/* เมื่อเอาเมาส์ชี้ (Hover) */
 .social-icons a:hover::before,
-.social-icons a:hover::after {
+.social-icons a:hover::after,
+.social-icons a:focus-visible::before,
+.social-icons a:focus-visible::after {
     opacity: 1;
     visibility: visible;
-    transform: translateX(-50%) translateY(0); /* ลอยขึ้นไปที่ตำแหน่งจริง */
+    transform: translateX(-50%) translateY(0);
 }
 
-/* เพิ่มสี Accent ตอนชี้ให้ขอบ Tooltip สวยขึ้น */
-.social-icons a:hover::before {
+.social-icons a:hover::before,
+.social-icons a:focus-visible::before {
     border-color: var(--accent-color);
 }
-.social-icons a:hover::after {
+
+.social-icons a:hover::after,
+.social-icons a:focus-visible::after {
     border-top-color: var(--accent-color);
 }
 
-/* ... (โค้ดเดิมส่วนบน) ... */
+.page-switcher {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: clamp(28px, 5vw, 64px);
+    width: 100%;
+    padding: 4px 10px 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    animation: fadeInUp 0.65s 0.2s ease-out both;
+}
 
-/* --- Discord Status Widget (Center Layout) --- */
-.contact-section {
+.page-tab {
+    position: relative;
+    flex: 0 0 auto;
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--text-secondary);
+    font-family: 'Kanit', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    cursor: pointer;
+    overflow: visible;
+    padding: 0 2px 10px;
+    font-size: clamp(1.2rem, 2.7vw, 1.65rem);
+    line-height: 1;
+    transition: color 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.page-tab:hover {
+    color: var(--text-main);
+    background: transparent;
+    transform: translateY(-2px);
+}
+
+.page-tab.active {
+    color: var(--text-main);
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    animation: none;
+}
+
+.page-tab.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--accent-color);
+    box-shadow: 0 0 14px rgba(165, 110, 255, 0.7);
+    animation: underlineGlow 2.2s ease-in-out infinite;
+}
+
+.paper-stage {
+    width: 100%;
+}
+
+.tab-panel[hidden] {
+    display: none !important;
+}
+
+.tab-panel.active {
+    animation: paperReveal 0.42s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.content-area {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px;
+    text-decoration: none;
+    color: var(--text-main);
+    animation: cardFadeIn 0.52s ease-out both;
+    transition: transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.32s ease, background-color 0.32s ease, box-shadow 0.32s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+    background-color: var(--bg-card-hover);
+    box-shadow: 0 10px 24px rgba(165, 110, 255, 0.18);
+}
+
+.content-area .card:nth-child(1) { animation-delay: 0.04s; }
+.content-area .card:nth-child(2) { animation-delay: 0.08s; }
+.content-area .card:nth-child(3) { animation-delay: 0.12s; }
+.content-area .card:nth-child(4) { animation-delay: 0.16s; }
+.content-area .card:nth-child(5) { animation-delay: 0.2s; }
+.content-area .card:nth-child(6) { animation-delay: 0.24s; }
+.content-area .card:nth-child(7) { animation-delay: 0.28s; }
+.content-area .card:nth-child(8) { animation-delay: 0.32s; }
+.content-area .card:nth-child(9) { animation-delay: 0.36s; }
+.content-area .card:nth-child(10) { animation-delay: 0.4s; }
+.content-area .card:nth-child(11) { animation-delay: 0.44s; }
+.content-area .card:nth-child(12) { animation-delay: 0.48s; }
+.content-area .card:nth-child(13) { animation-delay: 0.52s; }
+
+.card:hover .card-image,
+.card:hover .card-icon {
+    animation: iconFloat 0.9s ease-in-out infinite alternate;
+}
+
+.card:hover .card-content h3 {
+    color: var(--text-main);
+    text-shadow: 0 0 12px rgba(165, 110, 255, 0.32);
+}
+
+.card-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    flex-shrink: 0;
+    transition: transform 0.32s ease, border-color 0.32s ease, box-shadow 0.32s ease;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+}
+
+.card:hover .card-image img {
+    transform: scale(1.08);
+}
+
+.quest-icon {
+    background-color: #2b2d31;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quest-icon img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.card-icon {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    font-size: 3rem;
+    color: var(--accent-color);
+    transition: transform 0.32s ease, text-shadow 0.32s ease;
+}
+
+.card-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.highlight {
+    color: var(--accent-color);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.card:hover .highlight {
+    text-shadow: 0 0 12px rgba(165, 110, 255, 0.35);
+}
+
+.description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.resume-area .span-2 {
     grid-column: span 2;
+}
+
+.resume-card {
+    min-height: 250px;
+}
+
+.resume-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-left: 18px;
+}
+
+.resume-list li::marker {
+    color: var(--accent-color);
+}
+
+.resume-document {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    width: 100%;
+}
+
+.resume-window {
+    min-height: 0;
+    padding: 22px 24px;
+    border: 1px solid rgba(165, 110, 255, 0.32);
+    border-radius: 6px;
+    background: rgba(29, 17, 51, 0.52);
+    color: var(--text-main);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+    animation: cardFadeIn 0.52s ease-out both;
+    transition: transform 0.28s ease, border-color 0.28s ease, background-color 0.28s ease, box-shadow 0.28s ease;
+}
+
+.resume-window:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent-color);
+    background: rgba(38, 23, 66, 0.62);
+    box-shadow: 0 12px 28px rgba(165, 110, 255, 0.12);
+}
+
+.resume-window h3 {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--text-main);
+    font-size: 1.05rem;
+    line-height: 1.25;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.resume-window h3::before,
+.resume-contact-grid span[data-i18n]::before,
+.resume-contact-grid span:not([data-i18n])::before {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-color);
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    text-rendering: auto;
+}
+
+.resume-window h3::before {
+    width: 18px;
+    height: 18px;
+    font-size: 0.88rem;
+    text-shadow: 0 0 12px rgba(165, 110, 255, 0.35);
+}
+
+.resume-window h3[data-i18n="resume_summary_title"]::before { content: "\f15c"; }
+.resume-window h3[data-i18n="resume_target_title"]::before { content: "\f140"; }
+.resume-window h3[data-i18n="resume_skills_title"]::before { content: "\f121"; }
+.resume-window h3[data-i18n="resume_experience_title"]::before { content: "\f0b1"; }
+.resume-window h3[data-i18n="resume_education_title"]::before { content: "\f19d"; }
+.resume-window h3[data-i18n="resume_strengths_title"]::before { content: "\f0eb"; }
+.resume-window h3[data-i18n="resume_certs_title"]::before { content: "\f559"; }
+
+.resume-window p,
+.resume-window dd,
+.resume-window li {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.65;
+}
+
+.resume-window p + p {
+    margin-top: 10px;
+}
+
+.resume-value-link {
+    color: var(--text-main);
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(196, 176, 226, 0.65);
+    transition: color 0.25s ease, border-color 0.25s ease, text-shadow 0.25s ease;
+}
+
+.resume-value-link:hover {
+    color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
+    text-shadow: 0 0 10px rgba(165, 110, 255, 0.35);
+}
+
+.resume-wide,
+.resume-header-window {
+    grid-column: span 2;
+}
+
+.resume-header-window {
+    display: grid;
+    grid-template-columns: minmax(240px, 0.52fr) minmax(0, 1.48fr);
+    gap: clamp(22px, 4vw, 46px);
+    align-items: start;
+}
+
+.resume-eyebrow {
+    color: var(--accent-color) !important;
+    font-size: 0.82rem !important;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.resume-title-block h2 {
+    margin-top: 4px;
+    color: var(--text-main);
+    max-width: 100%;
+    font-size: clamp(1.78rem, 3.1vw, 2.35rem);
+    line-height: 1;
+    overflow-wrap: anywhere;
+    text-transform: uppercase;
+}
+
+.resume-role {
+    margin-top: 10px;
+    color: var(--text-secondary) !important;
+    font-size: 0.94rem !important;
+}
+
+.resume-quote {
+    margin-top: 15px;
+    padding-left: 14px;
+    border-left: 3px solid var(--accent-color);
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    font-style: italic;
+}
+
+.resume-contact-grid,
+.resume-skill-matrix,
+.resume-details {
+    display: grid;
+    gap: 10px;
+}
+
+.resume-contact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.resume-contact-grid div,
+.resume-skill-matrix div,
+.resume-details div {
+    min-width: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(196, 176, 226, 0.13);
+}
+
+.resume-contact-grid span,
+.resume-details dt {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: rgba(196, 176, 226, 0.72);
+    font-size: 0.76rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.resume-contact-grid span[data-i18n]::before,
+.resume-contact-grid span:not([data-i18n])::before {
+    width: 14px;
+    height: 14px;
+    flex: 0 0 14px;
+    font-size: 0.72rem;
+    opacity: 0.95;
+}
+
+.resume-contact-grid span[data-i18n="resume_real_name"]::before { content: "\f007"; }
+.resume-contact-grid span[data-i18n="resume_nickname"]::before { content: "\f2bd"; }
+.resume-contact-grid span[data-i18n="resume_public_name"]::before { content: "\f2c2"; }
+.resume-contact-grid span[data-i18n="resume_email"]::before,
+.resume-contact-grid span[data-i18n="resume_secondary_email"]::before { content: "\f0e0"; }
+.resume-contact-grid span[data-i18n="resume_discord"]::before { content: "\f392"; font-family: "Font Awesome 6 Brands"; font-weight: 400; }
+.resume-contact-grid span[data-i18n="resume_location"]::before { content: "\f3c5"; }
+.resume-contact-grid span[data-i18n="resume_website"]::before { content: "\f0ac"; }
+.resume-contact-grid span:not([data-i18n])::before { content: "\f09b"; font-family: "Font Awesome 6 Brands"; font-weight: 400; }
+
+.resume-contact-grid strong,
+.resume-details dd,
+.resume-skill-matrix p {
+    overflow-wrap: anywhere;
+}
+
+.resume-contact-grid strong,
+.resume-entry-head strong,
+.resume-skill-matrix strong {
+    color: var(--text-main);
+    font-size: 0.92rem;
+    line-height: 1.38;
+}
+
+.resume-tech-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 16px;
+    padding: 0;
+    list-style: none;
+}
+
+.resume-tech-icons li {
+    min-height: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 10px;
+    border: 1px solid rgba(165, 110, 255, 0.22);
+    border-radius: 6px;
+    background: rgba(18, 10, 31, 0.48);
+    color: var(--text-main);
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1;
+    animation: popIn 0.42s ease-out both;
+    transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.resume-tech-icons li:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-color);
+    background: rgba(165, 110, 255, 0.12);
+    box-shadow: 0 8px 18px rgba(165, 110, 255, 0.16);
+}
+
+.resume-tech-icons i {
+    width: 16px;
+    flex: 0 0 16px;
+    text-align: center;
+    font-size: 1rem;
+    filter: drop-shadow(0 0 7px rgba(165, 110, 255, 0.18));
+}
+
+.resume-tech-icons .skill-html i { color: #e34f26; }
+.resume-tech-icons .skill-css i { color: #1572b6; }
+.resume-tech-icons .skill-js i { color: #f7df1e; }
+.resume-tech-icons .skill-python i { color: #ffd43b; }
+.resume-tech-icons .skill-java i { color: #f89820; }
+.resume-tech-icons .skill-go i { color: #00add8; }
+.resume-tech-icons .skill-cpp i { color: #659ad2; }
+.resume-tech-icons .skill-mysql i { color: #00758f; }
+.resume-tech-icons .skill-minecraft i { color: #62b33b; }
+.resume-tech-icons .skill-discord i { color: #5865f2; }
+.resume-tech-icons .skill-api i { color: var(--accent-color); }
+
+.resume-skill-matrix {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.resume-skill-matrix strong {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--accent-color);
+}
+
+.resume-entry {
+    display: grid;
+    gap: 8px;
+}
+
+.resume-entry-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.resume-entry-head span,
+.resume-muted {
+    color: rgba(196, 176, 226, 0.72) !important;
+    font-size: 0.84rem !important;
+}
+
+.resume-bullets {
+    display: grid;
+    gap: 8px;
+    padding-left: 18px;
+}
+
+.resume-bullets li::marker {
+    color: var(--accent-color);
+}
+
+.contact-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    margin-top: 40px;
+    margin-top: 5px;
     margin-bottom: 20px;
+}
+
+.contact-section h2 {
+    color: var(--text-main);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .discord-widget {
@@ -429,22 +841,29 @@ body {
     padding: 20px 30px;
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    text-decoration: none; /* ลบเส้นใต้ลิงก์ออก */
+    animation: fadeInUp 0.55s ease-out both;
+    transition: transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.32s ease, border-color 0.32s ease;
+    text-decoration: none;
 }
 
-/* Hover Effect */
 .discord-widget:hover {
     transform: translateY(-2px);
     box-shadow: 0 15px 40px rgba(165, 110, 255, 0.15);
     border-color: var(--accent-color);
 }
 
-/* พื้นหลังจางๆ */
+.discord-widget:hover .discord-avatar-wrapper,
+.discord-widget:hover .activity-img-wrapper {
+    animation: iconFloat 0.9s ease-in-out infinite alternate;
+}
+
 .discord-widget::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-image: url('https://assets-global.website-files.com/6257adef93867e56f84d3092/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png');
     background-size: cover;
     background-position: center;
@@ -461,7 +880,6 @@ body {
     flex: 1;
 }
 
-/* Avatar & Decoration Wrapper */
 .discord-avatar-wrapper {
     position: relative;
     width: 70px;
@@ -473,22 +891,19 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    /* ลบ border เดิมออก เพราะจะมี decoration มาทับ */
     object-fit: cover;
 }
 
-/* Decoration (กรอบรูป) */
 .discord-decoration {
     position: absolute;
-    top: -15%; /* ขยายออกไปนอกกรอบ avatar เล็กน้อย */
+    top: -15%;
     left: -15%;
     width: 130%;
     height: 130%;
     pointer-events: none;
-    z-index: 2; /* อยู่บน avatar */
+    z-index: 2;
 }
 
-/* Status Dot */
 .discord-status-dot {
     position: absolute;
     bottom: 0;
@@ -498,13 +913,27 @@ body {
     border-radius: 50%;
     border: 3px solid var(--bg-card);
     background-color: #747f8d;
-    z-index: 3; /* อยู่บนสุด */
+    z-index: 3;
 }
 
-.status-online { background-color: #3ba55c; box-shadow: 0 0 8px #3ba55c; }
-.status-idle { background-color: #faa61a; box-shadow: 0 0 8px #faa61a; }
-.status-dnd { background-color: #ed4245; box-shadow: 0 0 8px #ed4245; }
-.status-offline { background-color: #747f8d; }
+.status-online {
+    background-color: #3ba55c;
+    box-shadow: 0 0 8px #3ba55c;
+}
+
+.status-idle {
+    background-color: #faa61a;
+    box-shadow: 0 0 8px #faa61a;
+}
+
+.status-dnd {
+    background-color: #ed4245;
+    box-shadow: 0 0 8px #ed4245;
+}
+
+.status-offline {
+    background-color: #747f8d;
+}
 
 .discord-info h3 {
     font-size: 1.3rem;
@@ -512,33 +941,40 @@ body {
     color: var(--text-main);
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 8px;
 }
 
-/* --- Guild Tag Pill Style (กล่องครอบ Tag) --- */
+.discord-info p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    opacity: 0.8;
+}
+
 .guild-tag-pill {
     display: inline-flex;
     align-items: center;
-    gap: 6px; /* ระยะห่างระหว่างรูปกับชื่อ */
-    background-color: rgba(255, 255, 255, 0.07); /* พื้นหลังจางๆ */
+    gap: 6px;
+    background-color: rgba(255, 255, 255, 0.07);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 6px; /* ขอบมน */
-    padding: 2px 8px 2px 4px; /* ขอบเขตภายใน */
+    border-radius: 6px;
+    padding: 2px 8px 2px 4px;
     margin-left: 10px;
     vertical-align: middle;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
 
 .guild-tag-pill:hover {
     background-color: rgba(255, 255, 255, 0.15);
     border-color: var(--accent-color);
+    transform: translateY(-1px);
 }
 
 .guild-badge-img {
     width: 16px;
     height: 16px;
     object-fit: contain;
-    display: block; /* แก้บั๊กภาพลอย */
+    display: block;
 }
 
 .guild-tag-text {
@@ -550,23 +986,6 @@ body {
     line-height: 1;
 }
 
-.discord-info p {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    opacity: 0.8;
-}
-
-/* ปรับปรุง h3 ให้จัดวางสวยงาม */
-.discord-info h3 {
-    font-size: 1.3rem;
-    margin-bottom: 4px;
-    color: var(--text-main);
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap; /* เผื่อชื่อยาว */
-}
-
-/* ฝั่งขวา (Activity) */
 .discord-right {
     display: flex;
     align-items: center;
@@ -588,12 +1007,18 @@ body {
     flex-shrink: 0;
 }
 
-.activity-img { width: 100%; height: 100%; object-fit: cover; }
+.activity-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 .activity-small-img {
     position: absolute;
-    bottom: -2px; right: -2px;
-    width: 18px; height: 18px;
+    bottom: -2px;
+    right: -2px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     border: 2px solid #1e1e1e;
     background-color: #1e1e1e;
@@ -615,7 +1040,6 @@ body {
     max-width: 140px;
 }
 
-/* --- Social Buttons (Theme Style) --- */
 .social-buttons-container {
     display: flex;
     flex-wrap: wrap;
@@ -635,12 +1059,12 @@ body {
     border-radius: 12px;
     color: var(--text-secondary);
     font-size: 1.4rem;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: popIn 0.45s ease-out both;
+    transition: color 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease, border-color 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
     text-decoration: none;
     position: relative;
 }
 
-/* Hover Effect (Theme Color) */
 .social-btn:hover {
     background-color: var(--bg-card-hover);
     color: var(--accent-color);
@@ -649,7 +1073,11 @@ body {
     box-shadow: 0 5px 15px rgba(165, 110, 255, 0.3);
 }
 
-/* Tooltip สำหรับ Social Buttons */
+.social-btn:hover i,
+.social-btn:hover img {
+    animation: iconPop 0.42s cubic-bezier(0.2, 1.4, 0.35, 1) both;
+}
+
 .social-btn::after {
     content: attr(data-label);
     position: absolute;
@@ -668,33 +1096,23 @@ body {
     pointer-events: none;
 }
 
-.social-btn:hover::after {
+.social-btn:hover::after,
+.social-btn:focus-visible::after {
     opacity: 1;
     visibility: visible;
+    animation: tooltipFade 0.25s ease-out both;
 }
 
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    .discord-widget {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 20px;
-        max-width: 100%;
-    }
-    .discord-right {
-        width: 100%;
-        max-width: 100%;
-        margin-top: 15px;
-    }
-    .social-buttons-container {
-        gap: 10px;
-    }
+.custom-img-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 11px;
+    vertical-align: middle;
 }
 
-/* --- System Stats Widget (Added) --- */
 .stats-widget {
-    flex-direction: column; /* เปลี่ยนแนวเป็นแนวตั้ง */
+    flex-direction: column;
     align-items: flex-start;
     margin-top: 20px;
     gap: 15px;
@@ -720,6 +1138,7 @@ body {
     margin: 0;
     color: var(--text-main);
 }
+
 .stats-title p {
     font-size: 0.85rem;
     margin: 0;
@@ -764,7 +1183,6 @@ body {
     color: var(--text-main);
 }
 
-/* Progress Bar Style */
 .stat-group {
     display: flex;
     flex-direction: column;
@@ -786,7 +1204,6 @@ body {
     transition: width 0.5s ease;
 }
 
-/* Disk Items */
 .disk-item {
     margin-top: 5px;
 }
@@ -802,40 +1219,40 @@ body {
     opacity: 0.7;
 }
 
-/* === PC Online / Offline Status Styles === */
-
-/* Online text: green dot + text */
 .status-online-text {
     color: #3ba55c !important;
     opacity: 1 !important;
     font-weight: 500;
 }
+
 .status-online-text i {
     color: #3ba55c;
     text-shadow: 0 0 6px rgba(59, 165, 92, 0.6);
     animation: pulseGreen 2s ease-in-out infinite;
 }
 
-/* Offline text: red power icon + text */
 .status-offline-text {
     color: #ff4757 !important;
     opacity: 1 !important;
     font-weight: 500;
 }
+
 .status-offline-text i {
     color: #ff4757;
     animation: pulseRed 1.5s ease-in-out infinite;
 }
 
-/* Widget state: Offline dimming effect */
 .stats-widget.pc-offline {
     position: relative;
 }
+
 .stats-widget.pc-offline::after {
     content: '';
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(0, 0, 0, 0.25);
     border-radius: 16px;
     pointer-events: none;
@@ -843,23 +1260,8 @@ body {
     animation: fadeIn 0.5s ease;
 }
 
-/* Widget state: Online — remove overlay if exists */
 .stats-widget.pc-online::after {
     display: none;
-}
-
-/* Pulse animations */
-@keyframes pulseGreen {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-}
-@keyframes pulseRed {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.6; transform: scale(1.1); }
-}
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
 }
 
 .divider-line {
@@ -869,7 +1271,6 @@ body {
     margin: 5px 0;
 }
 
-/* หัวข้อหมวดย่อย */
 .stat-group-title {
     font-size: 0.75rem;
     font-weight: 600;
@@ -879,10 +1280,9 @@ body {
     text-transform: uppercase;
 }
 
-/* ตารางอุปกรณ์ (Peripherals) */
 .peripherals-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* แบ่ง 2 คอลัมน์ */
+    grid-template-columns: 1fr 1fr;
     gap: 10px;
     width: 100%;
 }
@@ -896,12 +1296,13 @@ body {
     background: rgba(255, 255, 255, 0.03);
     padding: 6px 10px;
     border-radius: 6px;
-    transition: background 0.2s;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
 }
 
 .peripheral-item:hover {
     background: rgba(255, 255, 255, 0.08);
     color: var(--text-main);
+    transform: translateX(4px);
 }
 
 .peripheral-item i {
@@ -910,7 +1311,6 @@ body {
     text-align: center;
 }
 
-/* Network Speed Box */
 .network-speeds-box {
     display: flex;
     justify-content: space-between;
@@ -927,66 +1327,424 @@ body {
     gap: 8px;
     font-size: 0.9rem;
     color: var(--text-main);
-    font-family: monospace; /* ให้ตัวเลขดูเป็น Digital */
+    font-family: monospace;
 }
 
-.net-item i.fa-download { color: #4cd137; }
-.net-item i.fa-upload { color: #00a8ff; }
+.net-item i.fa-download {
+    color: #4cd137;
+}
 
-/* Responsive สำหรับมือถือ */
-@media (max-width: 480px) {
-    .peripherals-grid {
-        grid-template-columns: 1fr; /* มือถือให้เหลือ 1 แถว */
+.net-item i.fa-upload {
+    color: #00a8ff;
+}
+
+.stat-value.long-text {
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+.site-footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.stats-floating-widget {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(5px);
+    color: #ffffff;
+    padding: 8px 15px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: 'Kanit', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    user-select: none;
+    animation: fadeInUp 0.5s ease-out, floatingIdle 3s 0.5s ease-in-out infinite;
+}
+
+.divider {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 12px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    cursor: default;
+    transition: all 0.3s ease;
+}
+
+.stat-item i {
+    margin-right: 6px;
+}
+
+.like-item {
+    appearance: none;
+    min-width: 24px;
+    min-height: 24px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
+
+.like-item:hover {
+    transform: scale(1.1);
+}
+
+.like-item:hover i {
+    animation: heartBeat 0.45s forwards;
+}
+
+.like-item.active {
+    color: #ff4757;
+}
+
+.like-item.active i {
+    animation: heartBeat 0.3s forwards;
+}
+
+.view-item .hover-text {
+    max-width: 0;
+    opacity: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: all 0.4s ease-in-out;
+}
+
+.view-item:hover .hover-text {
+    max-width: 60px;
+    opacity: 1;
+    margin-right: 5px;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pageFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes bannerDropIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.985);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes cardFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.985);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.92);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes iconPop {
+    0% {
+        transform: scale(1) rotate(0deg);
+    }
+    45% {
+        transform: scale(1.2) rotate(-6deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+@keyframes iconFloat {
+    from {
+        transform: translateY(0) scale(1);
+        filter: drop-shadow(0 0 0 rgba(165, 110, 255, 0));
+    }
+    to {
+        transform: translateY(-4px) scale(1.03);
+        filter: drop-shadow(0 6px 12px rgba(165, 110, 255, 0.28));
+    }
+}
+
+@keyframes activeTabGlow {
+    0%, 100% {
+        box-shadow: 0 0 14px rgba(165, 110, 255, 0.22);
+    }
+    50% {
+        box-shadow: 0 0 24px rgba(165, 110, 255, 0.42);
+    }
+}
+
+@keyframes underlineGlow {
+    0%, 100% {
+        opacity: 0.82;
+        box-shadow: 0 0 10px rgba(165, 110, 255, 0.5);
+    }
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 18px rgba(165, 110, 255, 0.85);
+    }
+}
+
+@keyframes titleGlow {
+    from {
+        text-shadow: 0 0 10px rgba(165, 110, 255, 0.22);
+    }
+    to {
+        text-shadow: 0 0 18px rgba(165, 110, 255, 0.42);
+    }
+}
+
+@keyframes tooltipFade {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-3px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes floatingIdle {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes statusPulseGreen {
+    0%, 100% {
+        box-shadow: 0 0 8px #28a745;
+    }
+    50% {
+        box-shadow: 0 0 18px #28a745;
+    }
+}
+
+@keyframes statusPulseYellow {
+    0%, 100% {
+        box-shadow: 0 0 8px #ffc107;
+    }
+    50% {
+        box-shadow: 0 0 18px #ffc107;
+    }
+}
+
+@keyframes statusPulseRed {
+    0%, 100% {
+        box-shadow: 0 0 8px #dc3545;
+    }
+    50% {
+        box-shadow: 0 0 18px #dc3545;
+    }
+}
+
+@keyframes heartBeat {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes paperReveal {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.992);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes pulseGreen {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes pulseRed {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 900px) {
+    .resume-document,
+    .resume-header-window,
+    .resume-wide {
+        grid-template-columns: 1fr;
+        grid-column: auto;
+    }
+
+    .resume-contact-grid,
+    .resume-skill-matrix {
+        grid-template-columns: 1fr;
+    }
+
+    .resume-entry-head {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .content-area {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px;
+    }
+
+    .card {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: auto !important;
+        margin: 0 !important;
+    }
+
+    .resume-area .span-2 {
+        grid-column: auto;
     }
 }
 
 @media (max-width: 768px) {
+    .header-info {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .header-right {
+        text-align: left;
+        align-items: flex-start;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .page-switcher {
+        padding: 2px 4px 0;
+        gap: 24px;
+    }
+
+    .page-tab {
+        font-size: clamp(1.05rem, 6vw, 1.42rem);
+    }
+
+    .discord-widget {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    .discord-right {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 15px;
+    }
+
+    .social-buttons-container {
+        gap: 10px;
+    }
+
     .stat-row {
         flex-direction: column;
         align-items: flex-start;
         gap: 2px;
     }
-    .stat-value, .stat-value-list {
+
+    .stat-value,
+    .stat-value-list {
         text-align: left;
         align-items: flex-start;
-        padding-left: 24px; /* เว้นระยะให้ตรงกับไอคอนข้างบน */
+        padding-left: 24px;
     }
 }
-/* [ADD] ปรับขนาดตัวอักษรสำหรับค่าที่มีข้อยาวๆ เช่น RAM/Disk */
-.stat-value.long-text {
-    font-size: 0.8rem;
-    white-space: nowrap; /* พยายามให้อยู่บรรทัดเดียว */
+
+@media (max-width: 600px) {
+    .stats-floating-widget {
+        bottom: 10px;
+        left: 10px;
+        padding: 6px 12px;
+        font-size: 12px;
+    }
 }
 
-/* ถ้าจอมือถือ ให้ยอมขึ้นบรรทัดใหม่ได้ */
 @media (max-width: 480px) {
+    .peripherals-grid {
+        grid-template-columns: 1fr;
+    }
+
     .stat-value.long-text {
         white-space: normal;
         text-align: right;
     }
-}
-
-/* บังคับการแสดงผลใหม่ เมื่อหน้าจอเล็กกว่า 900px */
-@media (max-width: 900px) {
-    .content-area {
-        display: flex !important;       /* เปลี่ยนระบบจาก Grid เป็น Flex ทันที */
-        flex-direction: column !important; /* สั่งให้เรียงของเป็น "แนวตั้ง" เท่านั้น */
-        gap: 20px;
-    }
-
-    .card {
-        width: 100% !important;        /* บังคับการ์ดให้กว้างเต็มความกว้างจอ */
-        max-width: 100% !important;    /* ห้ามเกินขอบ */
-        min-width: auto !important;    /* ยกเลิกขนาดขั้นต่ำที่อาจจะดันโครงสร้าง */
-        margin: 0 !important;
-    }
-}
-
-/* คลาสสำหรับขยายขนาดรูปภาพไอคอนให้เท่ากับ FontAwesome Icon */
-.custom-img-icon {
-  width: 48px; /* ขนาดพอดีกับพื้นที่ด้านในปุ่ม (ปุ่ม 50px หักขอบซ้ายขวา 2px) */
-  height: 48px;
-  object-fit: cover; /* จัดระเบียบรูปภาพให้พอดีกรอบและไม่บิดเบี้ยว */
-  border-radius: 11px; /* ตัดขอบมุมรูปภาพให้โค้งรับกับขอบปุ่มพอดี */
-  vertical-align: middle; /* จัดให้อยู่ตรงกลางบรรทัด */
 }
