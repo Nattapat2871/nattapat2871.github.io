@@ -1,13 +1,17 @@
 // Author: nattapat2871 (https://nattapat2871.me)
 const translations = {
     th: {
+        page_title: 'Nattapat2871 - เรซูเม่และโปรเจกต์',
+        page_description: 'เรซูเม่และรวมลิงก์ผลงานของ Nattapat2871, Discord Bot, Minecraft Server, โปรเจกต์เขียนโค้ด และเว็บ Portfolio ไว้ในที่เดียว',
+        page_og_title: 'เรซูเม่และโปรเจกต์ของ Nattapat',
+        page_og_description: 'เรซูเม่และสารบัญรวมลิงก์ไปยังโปรเจกต์ เกม บอท และผลงานเขียนโค้ดของผม',
         header_title: 'NATTAPAT2871<br><span class="text-accent">PAGES</span>',
-        about_title: 'ABOUT THIS PAGE',
+        about_title: 'เกี่ยวกับหน้านี้',
         about_desc: 'หน้าเว็บนี้ ถูกสร้างขึ้นเพื่อใช้เป็น "สารบัญ" (Directory) สำหรับรวมลิงก์ไปยังโปรเจกต์ เกม บอท และผลงานโค้ดต่างๆ ของผมไว้ในที่เดียวเพื่อให้ง่ายต่อการเข้าถึง',
         tab_resume: 'เรซูเม่',
         tab_repo: 'รีโป',
         resume_eyebrow: 'เรซูเม่นักพัฒนา',
-        resume_role: 'Student Developer / Project Maintainer',
+        resume_role: 'นักศึกษาสายพัฒนา / ผู้ดูแลโปรเจกต์',
         resume_quote: 'สร้างระบบให้ใช้งานได้จริง ดูแลต่อได้ และชัดเจนแม้ในวันที่ระบบผิดพลาด',
         resume_real_name: 'ชื่อจริง',
         resume_nickname: 'ชื่อเล่น',
@@ -17,6 +21,7 @@ const translations = {
         resume_discord: 'Discord',
         resume_location: 'ที่อยู่ / Location',
         resume_website: 'เว็บไซต์',
+        resume_github: 'GitHub',
         resume_summary_title: 'สรุปโปรไฟล์',
         resume_ai_title: 'การพัฒนาแบบใช้ AI ช่วย',
         resume_target_title: 'เป้าหมายสายงาน',
@@ -35,6 +40,7 @@ const translations = {
         resume_real_name_value: 'นายณัฐพัชร์ จิตรสม',
         resume_nickname_value: 'นัม',
         resume_discord_value: 'ติดต่อผ่าน Discord',
+        resume_location_value: 'ประเทศไทย',
         resume_summary_1: 'นายณัฐพัชร์ จิตรสม (นัม) เป็นนักศึกษาที่พัฒนาและดูแลเว็บ, API, Discord bot, automation, Minecraft tooling และหน้า status/monitoring ภายใต้ ecosystem ของ Nattapat2871 โดยเน้นระบบที่ใช้งานได้จริง ดูแลต่อได้ และมี fallback เมื่อ service ภายนอกมีปัญหา',
         resume_summary_2: 'เริ่มเขียนโค้ดตั้งแต่ปี 2022 และพัฒนาต่อเนื่องผ่านโปรเจกต์ส่วนตัว, bootcamp, งานฝึกประสบการณ์ที่เชียงใหม่ และ repo ที่ครอบคลุม frontend static site, realtime WebSocket integration, page stats, API-driven widgets, bot/service directory และ tooling สำหรับ community หรือ workflow ส่วนตัว',
         resume_ai_1: 'โปรเจกต์ส่วนใหญ่เป็นงานที่พัฒนาด้วยการใช้ AI เป็นผู้ช่วยหลัก เช่น Gemini, Codex และ Claude Code สำหรับการเรียนรู้ วางแนวทาง เขียนตัวอย่างโค้ด แก้บั๊ก และตรวจสอบผลลัพธ์',
@@ -54,6 +60,7 @@ const translations = {
         resume_skill_icon_minecraft: 'ปลั๊กอิน Minecraft',
         resume_skill_icon_discord: 'บอท Discord',
         resume_skill_icon_api: 'API / Automation',
+        resume_tech_icons_label: 'ทักษะเทคนิคหลัก',
         resume_skill_frontend: 'HTML/CSS UI, responsive layout, static sites, metadata/SEO, interactive states',
         resume_skill_backend: 'REST API integration, WebSocket integration, page stats, profile data, system stats',
         resume_skill_discord_auto: 'Discord bot workflow, music bot flow, quest automation, daily login/redeem automation',
@@ -85,6 +92,70 @@ const translations = {
         resume_certification_value: 'ป.ธ.4, น.ธ.เอก',
         resume_award_label: 'รางวัล / การยอมรับ',
         resume_award_value: 'แข่งขันทำ webpage ระดับภูมิภาค ได้อันดับ 2 ตอน ป.6',
+        nav_page_switcher: 'สลับหน้า',
+        tooltip_github: 'GitHub',
+        tooltip_discord_profile: 'โปรไฟล์ Discord',
+        tooltip_webring: 'วงแหวนเว็บ',
+        tooltip_donate: 'สนับสนุน / โดเนท',
+        alt_profile_banner: 'แบนเนอร์โปรไฟล์',
+        alt_webring: 'วงแหวนเว็บ',
+        alt_discord_avatar: 'รูปโปรไฟล์ Discord',
+        alt_activity: 'กิจกรรม',
+        contact_title: 'ติดต่อ',
+        games_title: 'เกม',
+        system_status_title: 'สถานะระบบ',
+        discord_loading: 'กำลังโหลด...',
+        discord_connecting: 'กำลังเชื่อมต่อ...',
+        discord_activity: 'กิจกรรม',
+        discord_details: 'รายละเอียด...',
+        discord_connected: 'เชื่อมต่อแล้ว',
+        discord_currently_offline: 'ออฟไลน์อยู่',
+        discord_online: 'ออนไลน์',
+        discord_reconnecting: 'ออฟไลน์ (กำลังเชื่อมต่อใหม่...)',
+        discord_mins_elapsed: 'นาทีผ่านไป',
+        label_discord_server: 'เซิร์ฟเวอร์ Discord',
+        label_facebook: 'Facebook',
+        label_instagram: 'Instagram',
+        label_tiktok: 'TikTok',
+        label_email: 'อีเมล',
+        label_steam: 'Steam',
+        label_modrinth: 'Modrinth (Minecraft)',
+        label_fortnite: 'Fortnite (Epic Games)',
+        label_osu: 'osu!',
+        label_valorant: 'Valorant',
+        label_hoyolab: 'HoYoLAB',
+        label_arknights: 'Arknights: Endfield',
+        label_roblox: 'Roblox',
+        stats_loading_title: 'กำลังโหลดสถานะเครื่อง...',
+        stats_connecting_api: 'กำลังเชื่อมต่อ Ame API...',
+        stats_my_gear: 'อุปกรณ์ของผม',
+        stats_network: 'เครือข่าย',
+        stats_provider: 'ผู้ให้บริการ',
+        stats_ping_placeholder: 'ping - ms',
+        stats_last_update_placeholder: 'อัปเดตล่าสุด: -',
+        stats_unknown_host: 'ไม่ทราบชื่อเครื่อง',
+        stats_unknown_os: 'ไม่ทราบระบบปฏิบัติการ',
+        stats_system_offline: 'ระบบออฟไลน์',
+        stats_cannot_connect_api: 'ไม่สามารถเชื่อมต่อ Ame API ได้',
+        stats_offline_cannot_connect: 'ออฟไลน์ - ไม่สามารถเชื่อมต่อได้',
+        stats_offline: 'ออฟไลน์',
+        stats_online: 'ออนไลน์',
+        stats_updated: 'อัปเดตเมื่อ',
+        stats_free: 'ว่าง',
+        stats_total: 'ทั้งหมด',
+        stats_disk: 'ดิสก์',
+        time_unknown: 'ไม่ทราบเวลา',
+        time_just_now: 'เมื่อสักครู่',
+        time_seconds_ago: 'วินาทีที่แล้ว',
+        time_one_minute_ago: '1 นาทีที่แล้ว',
+        time_minutes_ago: 'นาทีที่แล้ว',
+        time_one_hour_ago: '1 ชั่วโมงที่แล้ว',
+        time_hours_ago: 'ชั่วโมงที่แล้ว',
+        time_one_day_ago: '1 วันที่แล้ว',
+        time_days_ago: 'วันที่แล้ว',
+        footer_copyright: '&copy; 2026 Nattapat2871. All Rights Reserved.',
+        like_button_label: 'กดถูกใจหน้านี้',
+        visitor_label: 'ผู้เข้าชม : ',
         system_normal: 'ระบบทำงานปกติ',
         system_warning: 'มีบริการบางอย่างออฟไลน์',
         system_critical: 'ไม่สามารถเชื่อมต่อระบบได้',
@@ -121,6 +192,10 @@ const translations = {
         btn_toggle: 'View this page in English'
     },
     en: {
+        page_title: 'Nattapat2871 - Resume & Project Pages',
+        page_description: 'Resume and directory collecting Nattapat2871 project links, Discord bots, Minecraft servers, coding projects, and portfolio pages.',
+        page_og_title: "Nattapat's Resume & Project Pages",
+        page_og_description: 'Resume and directory collecting links to my projects, games, bots, and coding works.',
         header_title: 'NATTAPAT2871<br><span class="text-accent">PAGES</span>',
         about_title: 'ABOUT THIS PAGE',
         about_desc: 'This webpage is created as a "Directory" to collect links to my projects, games, bots, and various coding works in one place for easy access.',
@@ -137,6 +212,7 @@ const translations = {
         resume_discord: 'Discord',
         resume_location: 'Location',
         resume_website: 'Website',
+        resume_github: 'GitHub',
         resume_summary_title: 'Professional Summary',
         resume_ai_title: 'AI-Assisted Development',
         resume_target_title: 'Career Target',
@@ -155,6 +231,7 @@ const translations = {
         resume_real_name_value: 'Nattapat Jitsom',
         resume_nickname_value: 'Nam',
         resume_discord_value: 'Contact via Discord',
+        resume_location_value: 'Thailand',
         resume_summary_1: 'Nattapat Jitsom (Nam) is a student developer who builds and maintains web pages, APIs, Discord bots, automation scripts, Minecraft tooling, and status/monitoring pages inside the Nattapat2871 ecosystem, focusing on practical systems that remain maintainable and provide fallback states when external services fail.',
         resume_summary_2: 'Started coding in 2022 and has continued improving through personal projects, bootcamp learning, practical experience in Chiang Mai, and repositories covering static frontend sites, realtime WebSocket integration, page stats, API-driven widgets, bot/service directories, and tooling for community or personal workflows.',
         resume_ai_1: 'Most projects are AI-assisted works built with tools such as Gemini, Codex, and Claude Code as primary helpers for learning, planning, generating code examples, debugging, and checking results.',
@@ -174,6 +251,7 @@ const translations = {
         resume_skill_icon_minecraft: 'Minecraft Plugin',
         resume_skill_icon_discord: 'Discord Bot',
         resume_skill_icon_api: 'API / Automation',
+        resume_tech_icons_label: 'Core technical skills',
         resume_skill_frontend: 'HTML/CSS UI, responsive layout, static sites, metadata/SEO, interactive states',
         resume_skill_backend: 'REST API integration, WebSocket integration, page stats, profile data, system stats',
         resume_skill_discord_auto: 'Discord bot workflows, music bot flow, quest automation, daily login/redeem automation',
@@ -205,6 +283,70 @@ const translations = {
         resume_certification_value: 'Pali Studies Level 4 (Por.Thor.4), Nak Tham Ek',
         resume_award_label: 'Award / Recognition',
         resume_award_value: '2nd place in a regional webpage competition during Prathom 6.',
+        nav_page_switcher: 'Page switcher',
+        tooltip_github: 'GitHub',
+        tooltip_discord_profile: 'Discord Profile',
+        tooltip_webring: 'Webring',
+        tooltip_donate: 'Donate Support',
+        alt_profile_banner: 'Profile Banner',
+        alt_webring: 'Webring',
+        alt_discord_avatar: 'Discord Avatar',
+        alt_activity: 'Activity',
+        contact_title: 'Contact',
+        games_title: 'Games',
+        system_status_title: 'System Status',
+        discord_loading: 'Loading...',
+        discord_connecting: 'Connecting...',
+        discord_activity: 'Activity',
+        discord_details: 'Details...',
+        discord_connected: 'Connected',
+        discord_currently_offline: 'Currently Offline',
+        discord_online: 'Online',
+        discord_reconnecting: 'Offline (Reconnecting...)',
+        discord_mins_elapsed: 'mins elapsed',
+        label_discord_server: 'Discord Server',
+        label_facebook: 'Facebook',
+        label_instagram: 'Instagram',
+        label_tiktok: 'TikTok',
+        label_email: 'Email',
+        label_steam: 'Steam',
+        label_modrinth: 'Modrinth (Minecraft)',
+        label_fortnite: 'Fortnite (Epic Games)',
+        label_osu: 'osu!',
+        label_valorant: 'Valorant',
+        label_hoyolab: 'HoYoLAB',
+        label_arknights: 'Arknights: Endfield',
+        label_roblox: 'Roblox',
+        stats_loading_title: 'Loading System Stats...',
+        stats_connecting_api: 'Connecting to Ame API...',
+        stats_my_gear: 'MY GEAR',
+        stats_network: 'NETWORK',
+        stats_provider: 'Provider',
+        stats_ping_placeholder: 'ping - ms',
+        stats_last_update_placeholder: 'Last update: -',
+        stats_unknown_host: 'Unknown Host',
+        stats_unknown_os: 'Unknown OS',
+        stats_system_offline: 'System Offline',
+        stats_cannot_connect_api: 'Cannot connect to Ame API',
+        stats_offline_cannot_connect: 'Offline - Cannot connect',
+        stats_offline: 'Offline',
+        stats_online: 'Online',
+        stats_updated: 'Updated',
+        stats_free: 'Free',
+        stats_total: 'Total',
+        stats_disk: 'Disk',
+        time_unknown: 'unknown',
+        time_just_now: 'just now',
+        time_seconds_ago: 'seconds ago',
+        time_one_minute_ago: '1 minute ago',
+        time_minutes_ago: 'minutes ago',
+        time_one_hour_ago: '1 hour ago',
+        time_hours_ago: 'hours ago',
+        time_one_day_ago: '1 day ago',
+        time_days_ago: 'days ago',
+        footer_copyright: '&copy; 2026 Nattapat2871. All Rights Reserved.',
+        like_button_label: 'Like this page',
+        visitor_label: 'visitor : ',
         system_normal: 'All Systems Operational',
         system_warning: 'Some Services Offline',
         system_critical: 'System Unreachable',
@@ -253,6 +395,10 @@ const VIEW_UPDATE_API_URL = `${API_BASE}/api/view?site=${encodeURIComponent(CURR
 const LIKE_UPDATE_API_URL = `${API_BASE}/api/like?site=${encodeURIComponent(CURRENT_DOMAIN)}`;
 const DISCORD_WS_URL = 'wss://ame-api.nattapat2871.me/ws/v1/user/1007237437627572275';
 
+function t(key, fallback = '') {
+    return translations[currentLang]?.[key] || translations.en?.[key] || fallback || key;
+}
+
 function toggleLanguage() {
     currentLang = currentLang === 'th' ? 'en' : 'th';
     updateTranslations();
@@ -274,9 +420,34 @@ function updateTranslations() {
 
     const button = document.getElementById('lang-toggle');
     if (button) {
-        button.innerText = translations[currentLang].btn_toggle;
-        button.setAttribute('aria-label', translations[currentLang].btn_toggle);
+        button.innerText = t('btn_toggle');
+        button.setAttribute('aria-label', t('btn_toggle'));
     }
+
+    document.querySelectorAll('[data-i18n-content]').forEach(element => {
+        const key = element.getAttribute('data-i18n-content');
+        if (translations[currentLang][key]) element.setAttribute('content', translations[currentLang][key]);
+    });
+
+    document.querySelectorAll('[data-i18n-tooltip]').forEach(element => {
+        const key = element.getAttribute('data-i18n-tooltip');
+        if (translations[currentLang][key]) element.setAttribute('data-tooltip', translations[currentLang][key]);
+    });
+
+    document.querySelectorAll('[data-i18n-label]').forEach(element => {
+        const key = element.getAttribute('data-i18n-label');
+        if (translations[currentLang][key]) element.setAttribute('data-label', translations[currentLang][key]);
+    });
+
+    document.querySelectorAll('[data-i18n-aria-label]').forEach(element => {
+        const key = element.getAttribute('data-i18n-aria-label');
+        if (translations[currentLang][key]) element.setAttribute('aria-label', translations[currentLang][key]);
+    });
+
+    document.querySelectorAll('[data-i18n-alt]').forEach(element => {
+        const key = element.getAttribute('data-i18n-alt');
+        if (translations[currentLang][key]) element.setAttribute('alt', translations[currentLang][key]);
+    });
 }
 
 function initPageTabs() {
@@ -480,7 +651,8 @@ function connectDiscordWS() {
     const ws = new WebSocket(DISCORD_WS_URL);
 
     ws.onopen = () => {
-        customStatusEl.innerText = 'Connected';
+        customStatusEl.removeAttribute('data-i18n');
+        customStatusEl.innerText = t('discord_connected');
     };
 
     ws.onmessage = event => {
@@ -490,6 +662,7 @@ function connectDiscordWS() {
             const user = ame?.user;
             if (!user) return;
 
+            usernameEl.removeAttribute('data-i18n');
             usernameEl.innerText = user.username || 'nattapat2871';
 
             const avatarFormat = user.avatar?.startsWith('a_') ? 'gif' : 'webp';
@@ -523,15 +696,18 @@ function connectDiscordWS() {
             statusDotEl.className = 'discord-status-dot';
             const status = ame.discord_status || 'offline';
             statusDotEl.classList.add(`status-${status}`);
+            customStatusEl.removeAttribute('data-i18n');
             customStatusEl.innerText = status === 'offline'
-                ? 'Currently Offline'
-                : ame.user_profile?.bio?.split('\n')[0] || 'Online';
+                ? t('discord_currently_offline')
+                : ame.user_profile?.bio?.split('\n')[0] || t('discord_online');
 
             const activity = (ame.activities || []).find(item => item.type !== 4);
             if (activity && activityBox && activityImg && activityName && activityState) {
                 activityBox.style.display = 'flex';
-                activityName.innerText = activity.name || 'Activity';
-                activityState.innerText = activity.state || activity.details || '';
+                activityName.removeAttribute('data-i18n');
+                activityState.removeAttribute('data-i18n');
+                activityName.innerText = activity.name || t('discord_activity');
+                activityState.innerText = activity.state || activity.details || t('discord_details');
                 activityImg.src = assetToDiscordUrl(activity, activity.assets?.large_image);
 
                 if (activitySmall) {
@@ -546,7 +722,7 @@ function connectDiscordWS() {
                 if (activityTime) {
                     if (activity.timestamps?.start) {
                         const elapsed = Math.max(0, Math.floor((Date.now() - activity.timestamps.start) / 1000 / 60));
-                        activityTime.innerText = `${elapsed} mins elapsed`;
+                        activityTime.innerText = `${elapsed} ${t('discord_mins_elapsed')}`;
                         activityTime.style.display = 'block';
                     } else {
                         activityTime.style.display = 'none';
@@ -561,7 +737,8 @@ function connectDiscordWS() {
     };
 
     ws.onclose = () => {
-        customStatusEl.innerText = 'Offline (Reconnecting...)';
+        customStatusEl.removeAttribute('data-i18n');
+        customStatusEl.innerText = t('discord_reconnecting');
         statusDotEl.className = 'discord-status-dot status-offline';
         setTimeout(connectDiscordWS, 5000);
     };
@@ -572,25 +749,25 @@ function connectDiscordWS() {
 }
 
 function timeAgo(dateString) {
-    if (!dateString) return 'unknown';
+    if (!dateString) return t('time_unknown');
     const updated = new Date(dateString.replace(' ', 'T'));
-    if (Number.isNaN(updated.getTime())) return 'unknown';
+    if (Number.isNaN(updated.getTime())) return t('time_unknown');
 
     const diffMs = Date.now() - updated.getTime();
-    if (diffMs < 10_000) return 'just now';
+    if (diffMs < 10_000) return t('time_just_now');
 
     const seconds = Math.floor(diffMs / 1000);
     const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
     const days = Math.floor(hours / 24);
 
-    if (seconds < 60) return `${seconds} seconds ago`;
-    if (minutes === 1) return '1 minute ago';
-    if (minutes < 60) return `${minutes} minutes ago`;
-    if (hours === 1) return '1 hour ago';
-    if (hours < 24) return `${hours} hours ago`;
-    if (days === 1) return '1 day ago';
-    return `${days} days ago`;
+    if (seconds < 60) return `${seconds} ${t('time_seconds_ago')}`;
+    if (minutes === 1) return t('time_one_minute_ago');
+    if (minutes < 60) return `${minutes} ${t('time_minutes_ago')}`;
+    if (hours === 1) return t('time_one_hour_ago');
+    if (hours < 24) return `${hours} ${t('time_hours_ago')}`;
+    if (days === 1) return t('time_one_day_ago');
+    return `${days} ${t('time_days_ago')}`;
 }
 
 function isPCOffline(dateString) {
@@ -633,11 +810,11 @@ function renderDisks(disks) {
         const label = document.createElement('span');
         label.className = 'stat-label';
         label.innerHTML = '<i class="fa-solid fa-hard-drive"></i>';
-        label.append(` ${disk.device || 'Disk'}`);
+        label.append(` ${disk.device || t('stats_disk')}`);
 
         const value = document.createElement('span');
         value.className = 'stat-value long-text';
-        value.innerText = `${disk.percent ?? 0}% Free: ${disk.free || '-'} Total: ${disk.total || '-'}`;
+        value.innerText = `${disk.percent ?? 0}% ${t('stats_free')}: ${disk.free || '-'} ${t('stats_total')}: ${disk.total || '-'}`;
 
         const track = document.createElement('div');
         track.className = 'progress-track';
@@ -675,8 +852,12 @@ async function fetchComputerStats() {
         widget.classList.toggle('pc-offline', offline);
         widget.classList.toggle('pc-online', !offline);
 
-        document.getElementById('pc-hostname').innerText = data.computer_detail?.hostname || 'Unknown Host';
-        document.getElementById('pc-os').innerText = data.computer_detail?.os || 'Unknown OS';
+        const hostnameEl = document.getElementById('pc-hostname');
+        const osEl = document.getElementById('pc-os');
+        hostnameEl.removeAttribute('data-i18n');
+        osEl.removeAttribute('data-i18n');
+        hostnameEl.innerText = data.computer_detail?.hostname || t('stats_unknown_host');
+        osEl.innerText = data.computer_detail?.os || t('stats_unknown_os');
         document.getElementById('pc-cpu').innerText = Array.isArray(data.cpu) && data.cpu[0] ? data.cpu[0].split('@')[0].trim() : '-';
         renderGpuList(data.gpu);
 
@@ -684,7 +865,7 @@ async function fetchComputerStats() {
             const ramPercent = Math.min(100, Math.max(0, Number(data.ram.percent_used) || 0));
             const ramText = document.getElementById('pc-ram-text');
             const ramBar = document.getElementById('pc-ram-bar');
-            ramText.innerText = `${ramPercent}% Free: ${data.ram.available || '-'} Total: ${data.ram.total || '-'}`;
+            ramText.innerText = `${ramPercent}% ${t('stats_free')}: ${data.ram.available || '-'} ${t('stats_total')}: ${data.ram.total || '-'}`;
             ramText.classList.add('long-text');
             ramBar.style.width = `${ramPercent}%`;
             ramBar.style.backgroundColor = ramPercent > 85 ? '#ff4757' : '';
@@ -699,11 +880,12 @@ async function fetchComputerStats() {
         }
 
         const updated = document.getElementById('pc-updated');
+        updated.removeAttribute('data-i18n');
         updated.classList.toggle('status-offline-text', offline);
         updated.classList.toggle('status-online-text', !offline);
         updated.innerHTML = offline
-            ? `<i class="fa-solid fa-power-off"></i> Offline - ${relativeTime}`
-            : `<i class="fa-solid fa-circle" style="font-size: 0.5rem; vertical-align: middle;"></i> Online - Updated ${relativeTime}`;
+            ? `<i class="fa-solid fa-power-off"></i> ${t('stats_offline')} - ${relativeTime}`
+            : `<i class="fa-solid fa-circle" style="font-size: 0.5rem; vertical-align: middle;"></i> ${t('stats_online')} - ${t('stats_updated')} ${relativeTime}`;
     } catch (error) {
         console.error('Error fetching PC stats:', error);
         widget.style.display = 'flex';
@@ -712,10 +894,17 @@ async function fetchComputerStats() {
         const hostname = document.getElementById('pc-hostname');
         const os = document.getElementById('pc-os');
         const updated = document.getElementById('pc-updated');
-        if (hostname) hostname.innerText = 'System Offline';
-        if (os) os.innerText = 'Cannot connect to Ame API';
+        if (hostname) {
+            hostname.removeAttribute('data-i18n');
+            hostname.innerText = t('stats_system_offline');
+        }
+        if (os) {
+            os.removeAttribute('data-i18n');
+            os.innerText = t('stats_cannot_connect_api');
+        }
         if (updated) {
-            updated.innerHTML = `<i class="fa-solid fa-power-off"></i> Offline - Cannot connect`;
+            updated.removeAttribute('data-i18n');
+            updated.innerHTML = `<i class="fa-solid fa-power-off"></i> ${t('stats_offline_cannot_connect')}`;
             updated.classList.add('status-offline-text');
             updated.classList.remove('status-online-text');
         }
