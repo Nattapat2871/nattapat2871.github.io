@@ -577,6 +577,7 @@ body {
 }
 
 .resume-window h3[data-i18n="resume_summary_title"]::before { content: "\f15c"; }
+.resume-window h3[data-i18n="resume_ai_title"]::before { content: "\f544"; }
 .resume-window h3[data-i18n="resume_target_title"]::before { content: "\f140"; }
 .resume-window h3[data-i18n="resume_skills_title"]::before { content: "\f121"; }
 .resume-window h3[data-i18n="resume_experience_title"]::before { content: "\f0b1"; }
