@@ -172,10 +172,13 @@ const translations = {
         cat_slimejuke: 'Discord Music Bot',
         cat_melody: 'Discord Music Bot',
         cat_mc: 'Minecraft Server',
+        cat_namcraft: 'Minecraft Server Network',
+        cat_bluetooth_receiver: 'Bluetooth PC Tool',
         cat_self_fortnite: 'Self Game service',
         'cat_self-fortnite': 'Self Game service',
         cat_discord_quest: 'Automation Script',
         desc_namlauncher: 'ลันเชอร์ Minecraft รุ่นเบต้าสำหรับ Windows และ Linux รองรับบัญชี Microsoft อินสแตนซ์แยก สกิน และคอนเทนต์จาก Modrinth หรือ CurseForge',
+        desc_namcraft: 'เว็บไซต์ทางการของเซิร์ฟเวอร์ Minecraft NamCraft จากองค์กร GitHub NamCraft-MC สำหรับแสดงข้อมูลเซิร์ฟเวอร์ ช่องทางเข้าร่วมคอมมูนิตี้ และบริการ Minecraft ที่เกี่ยวข้อง',
         desc_donate: 'เว็บไซต์สำหรับการสนับสนุนและโดเนทเพื่อเป็นกำลังใจในการพัฒนา',
         desc_port: 'หน้าเว็บแนะนำตัว ประวัติผลงาน และข้อมูลการติดต่ออย่างเป็นทางการ',
         desc_status: 'หน้าเว็บสำหรับตรวจสอบสถานะการทำงาน (Uptime) ของบอทและเว็บไซต์',
@@ -186,6 +189,7 @@ const translations = {
         desc_slimejuke: 'ยกเลิกการพัฒนาเพราะเปลี่ยนไปใช้ Rurina Melody',
         desc_melody: 'บอทเพลงคุณภาพสูงสำหรับ Discord รองรับการเล่นเพลงจากหลากหลายแพลตฟอร์ม พร้อมระบบจัดการห้องเพลงที่ทันสมัย และคุณภาพเสียงระดับ Lossless และคุณภาพเสียง 384 Kbps เพื่อให้คุณได้รับประสบการณ์ที่ดีที่สุด 🎶',
         desc_mc: 'เซิร์ฟเวอร์ Minecraft ที่ผมเปิดให้บริการ พร้อมระบบ Custom Plugin',
+        desc_bluetooth_receiver: 'โปรแกรมเดสก์ท็อปภาษา C# สำหรับรับเสียง Bluetooth จากมือถือมาใช้งานบนคอมพิวเตอร์ เป็นเครื่องมือเชื่อมต่อมือถือกับ PC สำหรับการใช้งานจริง',
         desc_discord_quest: 'สคริปต์ทำเควสและกดรับของรางวัล Discord อัตโนมัติผ่าน Console ทำงานสะดวกรวดเร็ว พร้อมระบบแสดงความคืบหน้าแบบเรียลไทม์ (Real-time Sync)',
         desc_self_fortnite: 'ส่งสถานะกิจกรรมที่ Discord และส่งไปที่กิจกรรมในเกม Fortnite โดยเชื่อมต่อ XMPP',
         'desc_self-fortnite': 'ส่งสถานะกิจกรรมที่ Discord และส่งไปที่กิจกรรมในเกม Fortnite โดยเชื่อมต่อ XMPP',
@@ -363,10 +367,13 @@ const translations = {
         cat_slimejuke: 'Discord Music Bot',
         cat_melody: 'Discord Music Bot',
         cat_mc: 'Minecraft Server',
+        cat_namcraft: 'Minecraft Server Network',
+        cat_bluetooth_receiver: 'Bluetooth PC Tool',
         cat_self_fortnite: 'Self Game Service',
         'cat_self-fortnite': 'Self Game Service',
         cat_discord_quest: 'Automation Script',
         desc_namlauncher: 'A lightweight Windows and Linux beta Minecraft launcher with Microsoft login, isolated instances, skins, and Modrinth or CurseForge content.',
+        desc_namcraft: 'Official NamCraft Minecraft server website from the NamCraft-MC GitHub organization, focused on server information, community access, and related Minecraft services.',
         desc_donate: 'A website for supporting and donating to encourage my development.',
         desc_port: 'Official portfolio website featuring my profile, works, and contact info.',
         desc_status: 'A status page for monitoring the uptime of my bots and websites.',
@@ -377,6 +384,7 @@ const translations = {
         desc_slimejuke: 'Development cancelled, replaced by Rurina Melody.',
         desc_melody: 'High-quality music bot for Discord. Supports playback from various platforms, modern room management, Lossless audio quality, and 384 Kbps for the best experience 🎶',
         desc_mc: 'My Minecraft server service with custom plugins and configurations.',
+        desc_bluetooth_receiver: 'A C# desktop utility for receiving Bluetooth audio from a mobile phone on a computer, built as a practical PC connectivity tool.',
         desc_discord_quest: 'Automated Discord quest completion and reward claiming script via Console. Features safe execution and real-time progress syncing.',
         desc_self_fortnite: 'Sync your Discord activity status to your Fortnite in-game status via XMPP connection.',
         'desc_self-fortnite': 'Sync your Discord activity status to your Fortnite in-game status via XMPP connection.',
@@ -630,6 +638,87 @@ function assetToDiscordUrl(activity, asset) {
     return asset;
 }
 
+function getDiscordMarkdownSource(value) {
+    if (value == null) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value !== 'object') return String(value);
+
+    const markdownValue = value.md ?? value.markdown ?? value.text ?? value.content ?? value.value;
+    return markdownValue == null ? '' : String(markdownValue);
+}
+
+function formatDiscordTimestamp(unixSeconds, style = 'f') {
+    const timestamp = Number(unixSeconds) * 1000;
+    if (!Number.isFinite(timestamp)) return '';
+
+    const date = new Date(timestamp);
+    const locale = currentLang === 'th' ? 'th-TH' : 'en-US';
+
+    if (style === 'R') {
+        const diffSeconds = Math.round((timestamp - Date.now()) / 1000);
+        const units = [
+            ['year', 31536000],
+            ['month', 2592000],
+            ['week', 604800],
+            ['day', 86400],
+            ['hour', 3600],
+            ['minute', 60],
+            ['second', 1]
+        ];
+        const [unit, secondsPerUnit] = units.find(([, seconds]) => Math.abs(diffSeconds) >= seconds) || ['second', 1];
+
+        try {
+            return new Intl.RelativeTimeFormat(locale, { numeric: 'auto' }).format(
+                Math.round(diffSeconds / secondsPerUnit),
+                unit
+            );
+        } catch {
+            return date.toLocaleString(locale);
+        }
+    }
+
+    const formats = {
+        t: { hour: '2-digit', minute: '2-digit' },
+        T: { hour: '2-digit', minute: '2-digit', second: '2-digit' },
+        d: { year: 'numeric', month: '2-digit', day: '2-digit' },
+        D: { year: 'numeric', month: 'long', day: 'numeric' },
+        f: { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' },
+        F: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }
+    };
+
+    return new Intl.DateTimeFormat(locale, formats[style] || formats.f).format(date);
+}
+
+function discordMarkdownToText(value, options = {}) {
+    let text = getDiscordMarkdownSource(value).replace(/\r\n/g, '\n');
+    if (options.firstLine) {
+        text = text.split('\n').find(line => line.trim()) || '';
+    }
+
+    return text
+        .replace(/<t:(\d{1,12})(?::([tTdDfFR]))?>/g, (_, seconds, style) => {
+            const formatted = formatDiscordTimestamp(seconds, style);
+            return formatted ? ` ${formatted} ` : '';
+        })
+        .replace(/<a?:([A-Za-z0-9_]+):\d+>/g, ':$1:')
+        .replace(/<@&(\d+)>/g, '@role-$1')
+        .replace(/<@!?(\d+)>/g, '@$1')
+        .replace(/<#(\d+)>/g, '#$1')
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1 ($2)')
+        .replace(/```(?:[A-Za-z0-9_-]+)?\n?([\s\S]*?)```/g, '$1')
+        .replace(/`([^`]+)`/g, '$1')
+        .replace(/\*\*([^*]+)\*\*/g, '$1')
+        .replace(/__([^_]+)__/g, '$1')
+        .replace(/~~([^~]+)~~/g, '$1')
+        .replace(/\|\|([^|]+)\|\|/g, '$1')
+        .replace(/(^|[\s([{])[*_]([^*_]+)[*_](?=[\s)\]},.!?:;]|$)/g, '$1$2')
+        .replace(/^#{1,6}\s+/gm, '')
+        .replace(/^>\s?/gm, '')
+        .replace(/\\([\\`*_{}\[\]()#+\-.!|>])/g, '$1')
+        .replace(/\s+/g, ' ')
+        .trim();
+}
+
 function connectDiscordWS() {
     const avatarEl = document.getElementById('dc-avatar');
     const decorationEl = document.getElementById('dc-decoration');
@@ -697,17 +786,18 @@ function connectDiscordWS() {
             const status = ame.discord_status || 'offline';
             statusDotEl.classList.add(`status-${status}`);
             customStatusEl.removeAttribute('data-i18n');
+            const profileBioText = discordMarkdownToText(ame.user_profile?.bio, { firstLine: true });
             customStatusEl.innerText = status === 'offline'
                 ? t('discord_currently_offline')
-                : ame.user_profile?.bio?.split('\n')[0] || t('discord_online');
+                : profileBioText || t('discord_online');
 
             const activity = (ame.activities || []).find(item => item.type !== 4);
             if (activity && activityBox && activityImg && activityName && activityState) {
                 activityBox.style.display = 'flex';
                 activityName.removeAttribute('data-i18n');
                 activityState.removeAttribute('data-i18n');
-                activityName.innerText = activity.name || t('discord_activity');
-                activityState.innerText = activity.state || activity.details || t('discord_details');
+                activityName.innerText = discordMarkdownToText(activity.name) || t('discord_activity');
+                activityState.innerText = discordMarkdownToText(activity.state || activity.details) || t('discord_details');
                 activityImg.src = assetToDiscordUrl(activity, activity.assets?.large_image);
 
                 if (activitySmall) {
