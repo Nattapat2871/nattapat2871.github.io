@@ -667,6 +667,10 @@ body {
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.resume-contact-grid .resume-aliases {
+    grid-column: 1 / -1;
+}
+
 .resume-contact-grid div,
 .resume-skill-matrix div,
 .resume-details div {
@@ -703,6 +707,7 @@ body {
 .resume-contact-grid span[data-i18n="resume_discord"]::before { content: "\f392"; font-family: "Font Awesome 6 Brands"; font-weight: 400; }
 .resume-contact-grid span[data-i18n="resume_location"]::before { content: "\f3c5"; }
 .resume-contact-grid span[data-i18n="resume_website"]::before { content: "\f0ac"; }
+.resume-contact-grid span[data-i18n="resume_known_as"]::before { content: "\f02c"; }
 .resume-contact-grid span:not([data-i18n])::before { content: "\f09b"; font-family: "Font Awesome 6 Brands"; font-weight: 400; }
 
 .resume-contact-grid strong,
@@ -717,6 +722,11 @@ body {
     color: var(--text-main);
     font-size: 0.92rem;
     line-height: 1.38;
+}
+
+.resume-contact-grid .resume-aliases strong {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.84rem;
 }
 
 .resume-tech-icons {
